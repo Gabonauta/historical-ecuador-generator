@@ -2,6 +2,10 @@
 
 MVP en Python + Streamlit para generar contenido historico del Ecuador a partir de una base estructurada en JSON. La generacion inicial usa plantillas y composicion programatica, de modo que el proyecto quede simple, mantenible y listo para crecer hacia RAG o integracion con LLMs.
 
+## Demo
+
+- App desplegada en Streamlit: [historical-ecuador-generator.streamlit.app](https://historical-ecuador-generator.streamlit.app/)
+
 ## Estructura
 
 ```text
