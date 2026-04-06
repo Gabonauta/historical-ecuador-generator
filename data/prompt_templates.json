@@ -1,0 +1,6 @@
+{
+  "ficha_historica": "Genera una ficha histórica formal sobre {nombre}. Usa un tono claro, informativo y objetivo. Incluye contexto, relevancia histórica y relación con el Ecuador.",
+  "resumen_corto": "Genera un resumen corto de máximo 80 palabras sobre {nombre}. Debe ser claro, directo y útil para estudiantes.",
+  "texto_turistico": "Genera un texto turístico atractivo sobre {nombre}. Resalta su valor cultural, histórico y su interés para visitantes.",
+  "post_redes": "Genera un post breve para redes sociales sobre {nombre}. Debe ser llamativo, informativo y fácil de leer."
+}
