@@ -1,4 +1,4 @@
-"""Load and query project JSON data files."""
+"""Load, save, and query project JSON data files."""
 
 from __future__ import annotations
 
@@ -10,26 +10,39 @@ from src.utils import validate_entities_payload, validate_templates_payload
 
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+PROCESSED_DIR = DATA_DIR / "processed"
 ENTITIES_PATH = DATA_DIR / "historical_entities.json"
 TEMPLATES_PATH = DATA_DIR / "prompt_templates.json"
 
 
-def _load_json_file(path: Path) -> Any:
+def load_json(path: str | Path) -> Any:
     """Load a JSON file with friendly error messages."""
-    if not path.exists():
-        raise FileNotFoundError(f"No se encontró el archivo: {path}")
+    resolved_path = Path(path)
+    if not resolved_path.exists():
+        raise FileNotFoundError(f"No se encontró el archivo: {resolved_path}")
 
     try:
-        with path.open("r", encoding="utf-8") as file:
+        with resolved_path.open("r", encoding="utf-8") as file:
             return json.load(file)
     except json.JSONDecodeError as error:
-        raise ValueError(f"JSON mal formado en {path}: {error}") from error
+        raise ValueError(f"JSON mal formado en {resolved_path}: {error}") from error
+
+
+def save_json(path: str | Path, data: Any) -> Path:
+    """Persist JSON data creating parent directories when needed."""
+    resolved_path = Path(path)
+    resolved_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with resolved_path.open("w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=2)
+
+    return resolved_path
 
 
 def load_historical_entities(path: Path | None = None) -> list[dict[str, Any]]:
     """Load and validate the historical entities dataset."""
     resolved_path = path or ENTITIES_PATH
-    payload = _load_json_file(resolved_path)
+    payload = load_json(resolved_path)
     issues = validate_entities_payload(payload)
     if issues:
         raise ValueError(" ; ".join(issues))
@@ -37,9 +50,9 @@ def load_historical_entities(path: Path | None = None) -> list[dict[str, Any]]:
 
 
 def load_prompt_templates(path: Path | None = None) -> dict[str, str]:
-    """Load and validate the prompt templates file."""
+    """Load and validate the prompt templates dataset."""
     resolved_path = path or TEMPLATES_PATH
-    payload = _load_json_file(resolved_path)
+    payload = load_json(resolved_path)
     issues = validate_templates_payload(payload)
     if issues:
         raise ValueError(" ; ".join(issues))
