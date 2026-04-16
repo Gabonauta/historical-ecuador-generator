@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .venv/
 .env
+outputs/generated_images/
 data/rag/*.npy
 data/processed/*.csv
 data/processed/*.json

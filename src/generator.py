@@ -1,4 +1,4 @@
-"""Hybrid content generation coordinator for Phase 4 with optional RAG."""
+"""Hybrid content generation coordinator for Phase 5 multimodal flows."""
 
 from __future__ import annotations
 
@@ -207,4 +207,65 @@ def _build_result(
         "retrieved_chunks": retrieved_chunks,
         "generated_text": generated_text,
         "error": error,
+    }
+
+
+def generate_multimodal_content(
+    entity: dict[str, Any],
+    output_type: str,
+    llm_provider: str = "openai",
+    image_provider: str = "openai",
+    use_llm: bool = True,
+    use_rag: bool = True,
+    top_k: int = 5,
+    model: str | None = None,
+    embedding_provider: str = "openai",
+    generate_image: bool = False,
+    image_mode: str = "retrato_historico",
+    visual_style: str = "realista",
+    image_size: str = "1024x1024",
+    generate_text: bool = True,
+    debug: bool = False,
+) -> dict[str, Any]:
+    """Generate text, image, or both while preserving Phase 4 compatibility."""
+    from src.image_generator import generate_visual_content
+
+    if not generate_text and not generate_image:
+        raise ValueError("Debes solicitar texto, imagen o ambos.")
+
+    text_result = None
+    if generate_text:
+        text_result = generate_content(
+            entity=entity,
+            output_type=output_type,
+            provider=llm_provider,
+            use_llm=use_llm,
+            use_rag=use_rag,
+            top_k=top_k,
+            model=model,
+            embedding_provider=embedding_provider,
+            debug=debug,
+        )
+
+    image_result = None
+    if generate_image:
+        image_result = generate_visual_content(
+            entity=entity,
+            provider=image_provider,
+            use_rag=use_rag,
+            top_k=top_k,
+            image_mode=image_mode,
+            visual_style=visual_style,
+            size=image_size,
+            embedding_provider=embedding_provider,
+            debug=debug,
+        )
+
+    return {
+        "text_result": text_result,
+        "image_result": image_result,
+        "entity_id": safe_str(entity.get("id")),
+        "output_type": output_type,
+        "generate_text": generate_text,
+        "generate_image": generate_image,
     }

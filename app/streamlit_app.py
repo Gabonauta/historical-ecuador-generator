@@ -1,4 +1,4 @@
-"""Streamlit UI for the historical Ecuador generator with optional RAG."""
+"""Streamlit UI for the historical Ecuador generator with multimodal support."""
 
 from __future__ import annotations
 
@@ -14,7 +14,9 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.embeddings_client import get_available_embedding_providers
 from src.formatter import format_metadata, format_related_list
-from src.generator import SUPPORTED_OUTPUTS, generate_content
+from src.generator import SUPPORTED_OUTPUTS, generate_multimodal_content
+from src.image_client import SUPPORTED_IMAGE_SIZES, get_available_image_providers
+from src.image_prompt_builder import SUPPORTED_IMAGE_MODES, SUPPORTED_VISUAL_STYLES
 from src.llm_client import get_available_providers
 from src.loader import get_entity_by_name, get_entity_names, load_historical_entities
 from src.rag_retriever import RAGRetrieverError, load_index
@@ -92,6 +94,121 @@ def render_retrieved_chunks(chunks: list[dict]) -> None:
             st.write(chunk.get("texto", ""))
 
 
+def execute_generation_request(
+    *,
+    entity: dict,
+    output_type: str,
+    llm_provider: str,
+    image_provider: str,
+    embedding_provider: str,
+    use_llm: bool,
+    use_rag: bool,
+    top_k: int,
+    generate_text: bool,
+    generate_image: bool,
+    image_mode: str,
+    visual_style: str,
+    image_size: str,
+    debug_mode: bool,
+) -> dict:
+    """Execute the multimodal generation flow with a light validation layer."""
+    if not generate_text and not generate_image:
+        raise ValueError("Debes activar al menos texto o imagen.")
+
+    return generate_multimodal_content(
+        entity=entity,
+        output_type=output_type,
+        llm_provider=llm_provider,
+        image_provider=image_provider,
+        use_llm=use_llm,
+        use_rag=use_rag,
+        top_k=top_k,
+        embedding_provider=embedding_provider,
+        generate_image=generate_image,
+        image_mode=image_mode,
+        visual_style=visual_style,
+        image_size=image_size,
+        generate_text=generate_text,
+        debug=debug_mode,
+    )
+
+
+def render_text_result(result: dict) -> None:
+    """Render the textual generation result."""
+    st.subheader("Resultado textual")
+    st.caption(
+        f"Modo usado: {result['mode']} | "
+        f"LLM provider: {result['provider']} | "
+        f"RAG usado: {result['use_rag']} | "
+        f"Embedding provider: {result['embedding_provider']}"
+    )
+    if result["error"]:
+        st.warning(result["error"])
+
+    with st.expander("Contexto base textual", expanded=False):
+        st.code(result["base_context"], language="text")
+
+    with st.expander("Contexto recuperado textual", expanded=False):
+        if result["retrieved_context"]:
+            st.code(result["retrieved_context"], language="text")
+        else:
+            st.info("Esta generacion textual no utilizo contexto recuperado adicional.")
+
+    with st.expander("Chunks recuperados para texto", expanded=False):
+        render_retrieved_chunks(result["retrieved_chunks"])
+
+    st.text_area(
+        "Texto generado",
+        value=result["generated_text"],
+        height=320,
+        help="Resultado final generado por el modo LLM o por el fallback local.",
+    )
+    st.download_button(
+        label="Descargar resultado .txt",
+        data=result["generated_text"],
+        file_name=f"{result.get('provider', 'texto')}_{result['output_type']}.txt",
+        mime="text/plain",
+    )
+
+    with st.expander("Prompt textual final", expanded=False):
+        st.code(result["prompt"], language="text")
+
+
+def render_image_result(result: dict, entity: dict) -> None:
+    """Render the visual generation result."""
+    st.subheader("Resultado visual")
+    st.caption(
+        f"Provider visual: {result['provider']} | "
+        f"Estado: {result['status']} | "
+        f"Modo visual: {result['image_mode']} | "
+        f"Estilo: {result['visual_style']} | "
+        f"RAG usado: {result['use_rag']}"
+    )
+    if result["error"]:
+        st.warning(result["error"])
+
+    with st.expander("Prompt visual final", expanded=False):
+        st.code(result["prompt"], language="text")
+
+    with st.expander("Contexto base visual", expanded=False):
+        st.code(result["base_context"], language="text")
+
+    with st.expander("Contexto recuperado visual", expanded=False):
+        if result["retrieved_context"]:
+            st.code(result["retrieved_context"], language="text")
+        else:
+            st.info("Esta generacion visual no utilizo contexto recuperado adicional.")
+
+    with st.expander("Chunks recuperados para imagen", expanded=False):
+        render_retrieved_chunks(result["retrieved_chunks"])
+
+    image_reference = result.get("image_path") or result.get("image_url")
+    if image_reference:
+        st.image(image_reference, caption=f"Imagen generada para {entity['nombre']}", use_container_width=True)
+    else:
+        st.info("No se genero una imagen final. El prompt visual quedo listo para copiar o reutilizar.")
+
+
 def main() -> None:
     """Render the Streamlit application."""
     st.title("Historical Ecuador Generator")
@@ -117,19 +234,53 @@ def main() -> None:
         options=list(SUPPORTED_OUTPUTS),
         format_func=lambda value: value.replace("_", " ").title(),
     )
+    generate_text = st.checkbox("Generar texto", value=True)
+    generate_image = st.checkbox("Generar imagen", value=False)
     provider = st.selectbox(
         "Selecciona el proveedor LLM",
         options=["openai", "gemini", "xai"],
         format_func=lambda value: value.upper(),
+        disabled=not generate_text,
+    )
+    image_provider = st.selectbox(
+        "Selecciona el proveedor de imagen",
+        options=["openai", "fallback"],
+        format_func=lambda value: value.upper(),
+        disabled=not generate_image,
     )
     embedding_provider = st.selectbox(
         "Selecciona el proveedor de embeddings",
         options=["openai", "gemini"],
         format_func=lambda value: value.upper(),
+        disabled=not (generate_text or generate_image),
     )
-    use_llm = st.checkbox("Usar LLM", value=True)
-    use_rag = st.checkbox("Usar RAG", value=True, disabled=not use_llm)
-    top_k = st.slider("Cantidad de chunks recuperados (top_k)", min_value=1, max_value=8, value=5)
+    use_llm = st.checkbox("Usar LLM", value=True, disabled=not generate_text)
+    use_rag = st.checkbox("Usar RAG", value=True, disabled=not (generate_text or generate_image))
+    top_k = st.slider(
+        "Cantidad de chunks recuperados (top_k)",
+        min_value=1,
+        max_value=8,
+        value=5,
+        disabled=not (generate_text or generate_image),
+    )
+    image_mode = st.selectbox(
+        "Modo visual",
+        options=list(SUPPORTED_IMAGE_MODES),
+        format_func=lambda value: value.replace("_", " ").title(),
+        disabled=not generate_image,
+    )
+    visual_style = st.selectbox(
+        "Estilo visual",
+        options=list(SUPPORTED_VISUAL_STYLES),
+        format_func=lambda value: value.replace("_", " ").title(),
+        disabled=not generate_image,
+    )
+    image_size = st.selectbox(
+        "Tamano de imagen",
+        options=list(SUPPORTED_IMAGE_SIZES),
+        format_func=lambda value: value,
+        disabled=not generate_image,
+    )
     debug_mode = st.checkbox("Mostrar diagnostico seguro", value=False)
 
     entity = get_entity_by_name(entities, selected_name)
@@ -139,6 +290,7 @@ def main() -> None:
 
     available_providers = get_available_providers()
     available_embedding_providers = get_available_embedding_providers()
+    available_image_providers = get_available_image_providers()
     rag_status = get_cached_rag_status()
 
     with st.expander("Estado de providers e indice RAG", expanded=False):
@@ -148,6 +300,8 @@ def main() -> None:
             st.json(available_providers)
             st.markdown("**Embedding providers**")
             st.json(available_embedding_providers)
+            st.markdown("**Image providers**")
+            st.json(available_image_providers)
         with right_col:
             st.markdown("**Indice RAG local**")
             if rag_status["available"]:
@@ -173,57 +327,33 @@ def main() -> None:
 
     if st.button("Generar contenido", type="primary"):
         try:
-            result = generate_content(
+            result = execute_generation_request(
                 entity=entity,
                 output_type=output_type,
-                provider=provider,
+                llm_provider=provider,
+                image_provider=image_provider,
+                embedding_provider=embedding_provider,
                 use_llm=use_llm,
                 use_rag=use_rag,
                 top_k=top_k,
-                embedding_provider=embedding_provider,
-                debug=debug_mode,
+                generate_text=generate_text,
+                generate_image=generate_image,
+                image_mode=image_mode,
+                visual_style=visual_style,
+                image_size=image_size,
+                debug_mode=debug_mode,
             )
         except ValueError as error:
             st.error(f"No se pudo generar el contenido: {error}")
             st.stop()
 
         st.subheader("Resultado generado")
-        st.caption(
-            f"Modo usado: {result['mode']} | "
-            f"LLM provider: {result['provider']} | "
-            f"RAG usado: {result['use_rag']} | "
-            f"Embedding provider: {result['embedding_provider']}"
-        )
-        if result["error"]:
-            st.warning(result["error"])
 
-        with st.expander("Contexto base usado", expanded=False):
-            st.code(result["base_context"], language="text")
+        if result["text_result"]:
+            render_text_result(result["text_result"])
 
-        with st.expander("Contexto recuperado", expanded=False):
-            if result["retrieved_context"]:
-                st.code(result["retrieved_context"], language="text")
-            else:
-                st.info("Esta generacion no utilizo contexto recuperado adicional.")
-
-        with st.expander("Chunks recuperados", expanded=False):
-            render_retrieved_chunks(result["retrieved_chunks"])
-
-        st.text_area(
-            "Texto generado",
-            value=result["generated_text"],
-            height=320,
-            help="Resultado final generado por el modo LLM o por el fallback local.",
-        )
-        st.download_button(
-            label="Descargar resultado .txt",
-            data=result["generated_text"],
-            file_name=f"{entity['id']}_{output_type}.txt",
-            mime="text/plain",
-        )
-
-        with st.expander("Prompt final", expanded=False):
-            st.code(result["prompt"], language="text")
+        if result["image_result"]:
+            render_image_result(result["image_result"], entity)
 
 
 if __name__ == "__main__":
