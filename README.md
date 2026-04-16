@@ -1,6 +1,6 @@
 # historical-ecuador-generator
 
-Proyecto en Python + Streamlit para generar contenido historico del Ecuador a partir de una base local en JSON. La Fase 3 agrego generacion hibrida con LLM multi-provider y la Fase 4 incorpora una capa RAG local para recuperar contexto semantico antes de construir el prompt.
+Proyecto en Python + Streamlit para generar contenido historico del Ecuador a partir de una base local en JSON. La Fase 3 agrego generacion hibrida con LLM multi-provider, la Fase 4 incorporo RAG local y la Fase 5 suma generacion de imagenes historicas con grounding visual razonable.
 
 ## Estructura
 
@@ -16,6 +16,7 @@ historical-ecuador-generator/
 │       ├── embeddings.npy
 │       └── metadata.json
 ├── outputs/
+│   ├── generated_images/
 │   └── sample_outputs/
 ├── scripts/
 │   └── build_rag_index.py
@@ -25,6 +26,9 @@ historical-ecuador-generator/
 │   ├── fallback_generator.py
 │   ├── formatter.py
 │   ├── generator.py
+│   ├── image_client.py
+│   ├── image_generator.py
+│   ├── image_prompt_builder.py
 │   ├── llm_client.py
 │   ├── loader.py
 │   ├── prompt_builder.py
@@ -70,13 +74,92 @@ streamlit run app/streamlit_app.py
 La interfaz permite:
 
 - seleccionar una entidad historica
-- elegir el tipo de salida
-- elegir el provider LLM (`openai`, `gemini`, `xai`)
-- elegir el provider de embeddings (`openai`, `gemini`)
-- activar o desactivar `Usar LLM`
-- activar o desactivar `Usar RAG`
-- ajustar `top_k`
-- inspeccionar contexto base, contexto recuperado y chunks recuperados
+- elegir el tipo de salida textual
+- elegir provider LLM, provider de imagen y provider de embeddings
+- activar o desactivar texto, imagen, LLM y RAG
+- elegir `image_mode`, `visual_style` y tamano de imagen
+- revisar contexto base, contexto recuperado y chunks relevantes
+
+## Fase 5: generacion de imagenes
+
+La Fase 5 agrega una capacidad visual separada de la generacion textual. El objetivo es producir prompts visuales historicos bien controlados y, cuando haya provider disponible, generar imagenes apoyadas en el mismo grounding del sistema textual.
+
+### Arquitectura visual
+
+- `src/image_prompt_builder.py`: construye prompts visuales en espanol a partir de entidad, contexto base, contexto recuperado, modo visual y estilo.
+- `src/image_client.py`: encapsula la generacion de imagenes, empezando con `openai` y un fallback seguro.
+- `src/image_generator.py`: coordina grounding visual, RAG opcional, prompt visual y llamada al provider de imagen.
+- `src/generator.py`: ahora expone `generate_multimodal_content()` para texto, imagen o modo combinado.
+- `app/streamlit_app.py`: permite flujo textual, visual o ambos sin romper la experiencia existente.
+
+### Texto, imagen y modo combinado
+
+- Texto:
+  usa `generate_content()` y conserva la logica de Fase 4.
+
+- Imagen:
+  usa `generate_visual_content()` y puede apoyarse en RAG para enriquecer el prompt visual.
+
+- Texto + imagen:
+  usa `generate_multimodal_content()` para coordinar ambos resultados sin acoplar las capas.
+
+### Modos visuales
+
+`image_mode` soporta:
+
+- `retrato_historico`
+- `escena_historica`
+- `postal_turistica`
+- `ilustracion_educativa`
+
+Cada modo cambia la composicion sugerida para el provider visual.
+
+### Estilos visuales
+
+`visual_style` soporta:
+
+- `realista`
+- `pintura_oleo`
+- `grabado_antiguo`
+- `ilustracion_editorial`
+
+Esto permite orientar el lenguaje visual sin asumir hiperrealismo por defecto.
+
+### Grounding visual
+
+El prompt visual usa:
+
+1. la entidad seleccionada
+2. el contexto base estructurado
+3. el contexto recuperado por RAG cuando esta disponible
+
+Las instrucciones visuales refuerzan:
+
+- usar solo contexto disponible
+- no inventar atributos historicos no sustentados
+- ser prudente cuando faltan detalles visuales
+- evitar anacronismos, logos modernos y texto incrustado
+
+### Provider visual y fallback
+
+Providers iniciales:
+
+- `openai`
+- `fallback`
+
+Comportamiento:
+
+- si `openai` esta disponible y la llamada funciona, se devuelve imagen local o referencia de imagen
+- si falta la API key o falla la solicitud, el sistema devuelve un fallback seguro con el prompt visual listo para copiar
+- la app no se rompe cuando falla la imagen
+
+### Guardado de imagenes
+
+Cuando el provider devuelve imagen utilizable, el sistema intenta guardarla en:
+
+- `outputs/generated_images/`
+
+Si no puede guardar localmente, conserva la referencia devuelta por el provider cuando exista.
 
 ## Fase 4: RAG
 
@@ -90,30 +173,7 @@ La Fase 4 agrega Retrieval-Augmented Generation sobre la base historica local si
 - `src/rag_retriever.py`: carga el indice, embebe la consulta y recupera los chunks mas relevantes por similitud coseno.
 - `src/context_builder.py`: construye contexto base estructurado y contexto recuperado.
 - `src/prompt_builder.py`: combina contexto base y contexto recuperado en un prompt controlado en espanol.
-- `src/generator.py`: coordina RAG, LLM y fallback local.
-
-### Flujo
-
-1. Se carga `data/historical_entities.json`.
-2. Cada entidad se divide en chunks como `resumen`, `descripcion`, `importancia` y `relaciones`.
-3. Los chunks se convierten en embeddings con el provider seleccionado.
-4. El indice se guarda localmente en `data/rag/chunks.json`, `data/rag/embeddings.npy` y `data/rag/metadata.json`.
-5. Durante la generacion, el sistema construye una consulta semantica desde la entidad seleccionada.
-6. Se recuperan los `top_k` chunks mas relevantes.
-7. El prompt final usa:
-   - contexto base estructurado: datos deterministas de la entidad seleccionada
-   - contexto recuperado: fragmentos semanticamente cercanos del indice local
-8. Si falla RAG, el sistema continua solo con contexto base.
-9. Si falla el provider LLM, el sistema usa `fallback_generator.py`.
-
-### Grounding y factualidad
-
-El prompt de Fase 4 refuerza estas reglas:
-
-- usar solo la informacion proporcionada
-- no inventar datos
-- priorizar contexto recuperado y estructurado si hay ambiguedad
-- omitir detalles faltantes
+- `src/generator.py`: coordina RAG, LLM, imagen y fallback.
 
 ### Construir el indice RAG
 
@@ -129,41 +189,6 @@ Tambien puedes elegir el provider de embeddings:
 python scripts/build_rag_index.py --embedding-provider gemini
 ```
 
-Archivos generados:
-
-- `data/rag/chunks.json`
-- `data/rag/embeddings.npy`
-- `data/rag/metadata.json`
-
-### Activar o desactivar RAG
-
-- En la app, marca `Usar RAG` para intentar recuperar contexto adicional.
-- Si `Usar LLM` esta desactivado, el sistema usa fallback local y no depende de RAG para generar la salida.
-- Si el indice no existe o el provider de embeddings falla, la generacion continua con contexto base.
-
-### Providers soportados
-
-LLM:
-
-- `openai`
-- `gemini`
-- `xai`
-
-Embeddings:
-
-- `openai`
-- `gemini`
-
-### Contexto base vs contexto recuperado
-
-- Contexto base:
-  se construye directamente desde la entidad seleccionada y contiene campos estructurados como nombre, tipo, resumen, descripcion e importancia.
-
-- Contexto recuperado:
-  proviene del indice RAG y contiene fragmentos semanticamente relevantes recuperados antes de llamar al LLM.
-
-Esta separacion hace mas claro que datos vienen del registro principal y cuales llegan como apoyo semantico.
-
 ## Fase 3: Generacion hibrida multi-provider
 
 La Fase 3 sigue vigente y se mantiene compatible:
@@ -174,7 +199,7 @@ La Fase 3 sigue vigente y se mantiene compatible:
 
 Si el provider LLM falla, el sistema no rompe la app y devuelve una salida local segura.
 
-## Tipos de salida
+## Tipos de salida textual
 
 - `ficha_historica`
 - `resumen_corto`
@@ -189,18 +214,18 @@ Ejecutar toda la suite:
 pytest
 ```
 
-La cobertura de Fase 4 incluye:
+La cobertura de Fase 5 incluye:
 
-- chunking RAG
-- cliente de embeddings sin llamadas reales
-- recuperacion top-k con mocks
-- flujo del generador con y sin RAG
+- construccion de prompts visuales
+- cliente de imagen sin llamadas reales
+- flujo visual con y sin RAG
+- flujo ligero de la app para texto e imagen
 
 ## Evolucion futura
 
-La implementacion de Fase 4 evita complejidad innecesaria hoy, pero deja preparada la arquitectura para:
+La base de Fase 5 queda preparada para:
 
-- cambiar `numpy` por un backend vectorial dedicado
-- agregar re-ranking
-- agregar evaluacion automatica
-- indexar nuevas fuentes historicas sin acoplar la app a un SDK concreto
+- sumar nuevos providers visuales
+- extenderse a edicion de imagenes
+- compartir grounding entre texto e imagen con mas eficiencia
+- avanzar hacia una fase multimodal mas completa sin mezclar capas de responsabilidad
