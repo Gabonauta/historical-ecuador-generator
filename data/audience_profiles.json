@@ -1,0 +1,110 @@
+[
+  {
+    "audience_id": "estudiante_secundaria",
+    "nombre_visible": "Estudiante de secundaria",
+    "descripcion": "Contenido claro, accesible y educativo para niveles escolares medios.",
+    "preferred_tone": "didactico",
+    "preferred_depth": "media",
+    "preferred_length": "media",
+    "preferred_purpose": "educativo",
+    "style_rules": [
+      "Usar lenguaje claro y accesible",
+      "Explicar contexto historico de forma sencilla",
+      "Priorizar ideas clave antes que detalle especializado"
+    ],
+    "forbidden_patterns": [
+      "No asumir conocimiento experto",
+      "No usar tecnicismos innecesarios"
+    ]
+  },
+  {
+    "audience_id": "estudiante_universitario",
+    "nombre_visible": "Estudiante universitario",
+    "descripcion": "Contenido informativo y bien estructurado con algo mas de desarrollo conceptual.",
+    "preferred_tone": "formal",
+    "preferred_depth": "media",
+    "preferred_length": "media",
+    "preferred_purpose": "educativo",
+    "style_rules": [
+      "Mantener claridad argumentativa",
+      "Incluir contexto historico suficiente para analisis inicial",
+      "Evitar afirmaciones no sustentadas"
+    ],
+    "forbidden_patterns": [
+      "No convertir el texto en ensayo especulativo",
+      "No exagerar conclusiones historicas"
+    ]
+  },
+  {
+    "audience_id": "turista_general",
+    "nombre_visible": "Turista general",
+    "descripcion": "Contenido atractivo, patrimonial y accesible para personas interesadas en visitar o conocer.",
+    "preferred_tone": "divulgativo",
+    "preferred_depth": "baja",
+    "preferred_length": "media",
+    "preferred_purpose": "turistico",
+    "style_rules": [
+      "Resaltar valor cultural y patrimonial",
+      "Mantener un tono ameno y accesible",
+      "Priorizar informacion relevante para curiosidad general"
+    ],
+    "forbidden_patterns": [
+      "No usar jerga academica pesada",
+      "No inventar atractivos o detalles no sustentados"
+    ]
+  },
+  {
+    "audience_id": "docente",
+    "nombre_visible": "Docente",
+    "descripcion": "Contenido util para enseñanza, con estructura clara y foco explicativo.",
+    "preferred_tone": "didactico",
+    "preferred_depth": "alta",
+    "preferred_length": "media",
+    "preferred_purpose": "educativo",
+    "style_rules": [
+      "Organizar la informacion con claridad pedagogica",
+      "Destacar relaciones historicas y contexto",
+      "Favorecer explicaciones reutilizables en clase"
+    ],
+    "forbidden_patterns": [
+      "No priorizar el impacto por encima de la claridad",
+      "No omitir contexto clave cuando este disponible"
+    ]
+  },
+  {
+    "audience_id": "divulgacion_redes",
+    "nombre_visible": "Divulgacion para redes",
+    "descripcion": "Contenido breve, llamativo y facil de compartir sin perder rigor factual.",
+    "preferred_tone": "divulgativo",
+    "preferred_depth": "baja",
+    "preferred_length": "corta",
+    "preferred_purpose": "redes",
+    "style_rules": [
+      "Ir rapido a la idea principal",
+      "Mantener impacto visual o verbal sin exagerar",
+      "Usar lenguaje breve y claro"
+    ],
+    "forbidden_patterns": [
+      "No sacrificar factualidad por viralidad",
+      "No usar exageraciones historicas"
+    ]
+  },
+  {
+    "audience_id": "investigador_inicial",
+    "nombre_visible": "Investigador inicial",
+    "descripcion": "Contenido introductorio con mayor detalle y orientacion academica basica.",
+    "preferred_tone": "formal",
+    "preferred_depth": "alta",
+    "preferred_length": "larga",
+    "preferred_purpose": "academico",
+    "style_rules": [
+      "Mantener precision conceptual",
+      "Profundizar mas cuando el contexto lo permita",
+      "Conservar orden y sobriedad argumentativa"
+    ],
+    "forbidden_patterns": [
+      "No inventar interpretaciones historiograficas",
+      "No asumir evidencia no presente en el contexto"
+    ]
+  }
+]

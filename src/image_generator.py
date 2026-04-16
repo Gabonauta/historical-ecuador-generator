@@ -25,6 +25,7 @@ def generate_visual_content(
     embedding_provider: str = "openai",
     quality: str = "standard",
     save_dir: str | None = None,
+    personalization_config: dict[str, Any] | None = None,
     debug: bool = False,
 ) -> dict[str, Any]:
     """Generate visual content using grounded context and a safe image provider wrapper."""
@@ -37,7 +38,7 @@ def generate_visual_content(
     notices: list[str] = []
 
     if use_rag:
-        query = _build_visual_rag_query(entity, image_mode, visual_style)
+        query = _build_visual_rag_query(entity, image_mode, visual_style, personalization_config)
         try:
             index_data = load_index()
             metadata_provider = safe_str(index_data.get("metadata", {}).get("embedding_provider")).lower()
@@ -78,6 +79,7 @@ def generate_visual_content(
             visual_style=visual_style,
             base_context=base_context,
             retrieved_context=retrieved_context,
+            personalization_config=personalization_config,
         )
     except ValueError as error:
         return {
@@ -128,7 +130,12 @@ def generate_visual_content(
     }
 
 
-def _build_visual_rag_query(entity: dict[str, Any], image_mode: str, visual_style: str) -> str:
+def _build_visual_rag_query(
+    entity: dict[str, Any],
+    image_mode: str,
+    visual_style: str,
+    personalization_config: dict[str, Any] | None = None,
+) -> str:
     """Build a semantic query optimized for visual grounding."""
     query_parts = [
         safe_str(entity.get("nombre")),
@@ -145,6 +152,16 @@ def _build_visual_rag_query(entity: dict[str, Any], image_mode: str, visual_styl
     etiquetas = ", ".join(safe_str(tag) for tag in safe_list(entity.get("etiquetas")) if has_text(tag))
     if etiquetas:
         query_parts.append(f"Etiquetas: {etiquetas}")
+
+    if personalization_config:
+        audience_name = safe_str(
+            personalization_config.get("nombre_visible") or personalization_config.get("audience_id")
+        )
+        if audience_name:
+            query_parts.append(f"Audiencia: {audience_name}")
+        purpose = safe_str(personalization_config.get("purpose"))
+        if purpose:
+            query_parts.append(f"Proposito: {purpose}")
 
     return " | ".join(part for part in query_parts if has_text(part))
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from src.utils import normalize_text, safe_str
+from src.utils import normalize_text, safe_list, safe_str
 
 
 SUPPORTED_IMAGE_MODES = (
@@ -76,6 +76,7 @@ def build_image_prompt(
     visual_style: str,
     base_context: str,
     retrieved_context: str = "",
+    personalization_config: dict[str, Any] | None = None,
 ) -> str:
     """Build a safe and grounded Spanish prompt for historical image generation."""
     normalized_mode = normalize_text(image_mode, lowercase=True)
@@ -107,6 +108,10 @@ def build_image_prompt(
         base_context,
     ]
 
+    personalization_lines = _build_visual_personalization_lines(personalization_config)
+    if personalization_lines:
+        prompt_sections.extend(personalization_lines)
+
     if normalize_text(retrieved_context):
         prompt_sections.extend(
             [
@@ -125,3 +130,62 @@ def build_image_prompt(
     )
 
     return "\n".join(prompt_sections)
+
+
+def _build_visual_personalization_lines(
+    personalization_config: dict[str, Any] | None,
+) -> list[str]:
+    """Build lightweight audience-aware guidance for visual prompts."""
+    if not personalization_config:
+        return []
+
+    audience_id = normalize_text(personalization_config.get("audience_id"), lowercase=True)
+    audience_name = safe_str(
+        personalization_config.get("nombre_visible") or personalization_config.get("audience_id"),
+        "Audiencia general",
+    )
+    purpose = normalize_text(personalization_config.get("purpose"), lowercase=True)
+    tone = normalize_text(personalization_config.get("tone"), lowercase=True)
+
+    lines = [
+        f"Audiencia objetivo: {audience_name}.",
+        f"Proposito de comunicacion: {purpose or 'divulgacion'}.",
+    ]
+
+    if audience_id == "turista_general" or purpose == "turistico":
+        lines.append(
+            "Da prioridad al valor patrimonial, a la atmosfera del lugar y al interes cultural para visitantes, sin exagerar rasgos no confirmados."
+        )
+    elif audience_id == "docente" or purpose == "educativo":
+        lines.append(
+            "Da prioridad a una composicion clara, explicativa y facil de interpretar en contextos educativos."
+        )
+    elif audience_id == "divulgacion_redes" or purpose == "redes":
+        lines.append(
+            "Busca una composicion mas impactante y sintetica, con foco visual claro, sin sacrificar fidelidad historica."
+        )
+    elif audience_id == "investigador_inicial" or purpose == "academico":
+        lines.append(
+            "Mantiene una composicion sobria, con apariencia documental y control de detalles visuales no confirmados."
+        )
+    else:
+        lines.append(
+            "Ajusta la imagen a la audiencia sin alterar la fidelidad historica razonable."
+        )
+
+    if tone == "didactico":
+        lines.append("Haz que la escena sea visualmente legible y facil de explicar.")
+    elif tone == "promocional":
+        lines.append("Mantiene atractivo visual responsable, sin convertir la escena en publicidad anacronica.")
+    elif tone == "narrativo":
+        lines.append("Sugiere una composicion con sentido narrativo moderado, sin teatralidad excesiva.")
+
+    style_rules = [
+        safe_str(rule)
+        for rule in safe_list(personalization_config.get("style_rules"))
+        if normalize_text(rule)
+    ]
+    if style_rules:
+        lines.append("Reglas de presentacion complementarias: " + "; ".join(style_rules[:3]) + ".")
+
+    return lines

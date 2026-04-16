@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from typing import Any
 
+from src.audience_profiles import DEFAULT_AUDIENCE_ID, build_safe_audience_profile, get_audience_profile
 from src.context_builder import build_entity_context, build_retrieved_context
 from src.embeddings_client import EmbeddingsClientError
 from src.fallback_generator import generate_fallback_content
 from src.llm_client import LLMClientError, generate_text, get_safe_error_chain
+from src.personalization import build_personalization_config
 from src.prompt_builder import build_prompt
 from src.rag_retriever import RAGRetrieverError, load_index, retrieve
 from src.utils import has_text, safe_list, safe_str
@@ -31,6 +33,7 @@ def generate_content(
     model: str | None = None,
     embedding_provider: str = "openai",
     debug: bool = False,
+    personalization_config: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Generate content using an LLM when available, otherwise use safe fallback."""
     if output_type not in SUPPORTED_OUTPUTS:
@@ -84,10 +87,15 @@ def generate_content(
         output_type=output_type,
         base_context=base_context,
         retrieved_context=retrieved_context,
+        personalization_config=personalization_config,
     )
 
     if not use_llm:
-        generated_text = generate_fallback_content(entity, output_type)
+        generated_text = generate_fallback_content(
+            entity,
+            output_type,
+            personalization_config=personalization_config,
+        )
         return _build_result(
             mode="fallback",
             provider_name="fallback",
@@ -123,7 +131,11 @@ def generate_content(
             error=_join_notices(notices),
         )
     except LLMClientError as error:
-        generated_text = generate_fallback_content(entity, output_type)
+        generated_text = generate_fallback_content(
+            entity,
+            output_type,
+            personalization_config=personalization_config,
+        )
         notices.append(
             _build_runtime_notice(
                 message="No fue posible usar el proveedor LLM seleccionado; se uso el modo fallback.",
@@ -224,6 +236,11 @@ def generate_multimodal_content(
     image_mode: str = "retrato_historico",
     visual_style: str = "realista",
     image_size: str = "1024x1024",
+    audience_id: str = DEFAULT_AUDIENCE_ID,
+    tone: str | None = None,
+    depth: str | None = None,
+    length: str | None = None,
+    purpose: str | None = None,
     generate_text: bool = True,
     debug: bool = False,
 ) -> dict[str, Any]:
@@ -232,6 +249,14 @@ def generate_multimodal_content(
 
     if not generate_text and not generate_image:
         raise ValueError("Debes solicitar texto, imagen o ambos.")
+
+    personalization_config = _resolve_personalization_config(
+        audience_id=audience_id,
+        tone=tone,
+        depth=depth,
+        length=length,
+        purpose=purpose,
+    )
 
     text_result = None
     if generate_text:
@@ -245,6 +270,7 @@ def generate_multimodal_content(
             model=model,
             embedding_provider=embedding_provider,
             debug=debug,
+            personalization_config=personalization_config,
         )
 
     image_result = None
@@ -258,6 +284,7 @@ def generate_multimodal_content(
             visual_style=visual_style,
             size=image_size,
             embedding_provider=embedding_provider,
+            personalization_config=personalization_config,
             debug=debug,
         )
 
@@ -268,4 +295,37 @@ def generate_multimodal_content(
         "output_type": output_type,
         "generate_text": generate_text,
         "generate_image": generate_image,
+        "personalization": personalization_config,
     }
+
+
+def _resolve_personalization_config(
+    *,
+    audience_id: str,
+    tone: str | None,
+    depth: str | None,
+    length: str | None,
+    purpose: str | None,
+) -> dict[str, Any]:
+    """Resolve a safe personalization config from profile defaults and overrides."""
+    try:
+        audience_profile = get_audience_profile(audience_id or DEFAULT_AUDIENCE_ID)
+    except (FileNotFoundError, KeyError, ValueError):
+        audience_profile = build_safe_audience_profile(audience_id or DEFAULT_AUDIENCE_ID)
+
+    try:
+        return build_personalization_config(
+            audience_profile=audience_profile,
+            tone=tone,
+            depth=depth,
+            length=length,
+            purpose=purpose,
+        )
+    except Exception:
+        return build_personalization_config(
+            audience_profile=build_safe_audience_profile(audience_id or DEFAULT_AUDIENCE_ID),
+            tone=tone,
+            depth=depth,
+            length=length,
+            purpose=purpose,
+        )

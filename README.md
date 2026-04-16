@@ -1,6 +1,6 @@
 # historical-ecuador-generator
 
-Proyecto en Python + Streamlit para generar contenido historico del Ecuador a partir de una base local en JSON. La Fase 3 agrego generacion hibrida con LLM multi-provider, la Fase 4 incorporo RAG local y la Fase 5 suma generacion de imagenes historicas con grounding visual razonable.
+Proyecto en Python + Streamlit para generar contenido historico del Ecuador a partir de una base local en JSON. La Fase 3 agrego generacion hibrida con LLM multi-provider, la Fase 4 incorporo RAG local, la Fase 5 sumo generacion de imagenes y la Fase 6 agrega personalizacion por audiencia.
 
 ## Estructura
 
@@ -11,6 +11,7 @@ historical-ecuador-generator/
 ├── data/
 │   ├── historical_entities.json
 │   ├── prompt_templates.json
+│   ├── audience_profiles.json
 │   └── rag/
 │       ├── chunks.json
 │       ├── embeddings.npy
@@ -21,6 +22,7 @@ historical-ecuador-generator/
 ├── scripts/
 │   └── build_rag_index.py
 ├── src/
+│   ├── audience_profiles.py
 │   ├── context_builder.py
 │   ├── embeddings_client.py
 │   ├── fallback_generator.py
@@ -31,6 +33,7 @@ historical-ecuador-generator/
 │   ├── image_prompt_builder.py
 │   ├── llm_client.py
 │   ├── loader.py
+│   ├── personalization.py
 │   ├── prompt_builder.py
 │   ├── rag_chunker.py
 │   ├── rag_indexer.py
@@ -75,91 +78,124 @@ La interfaz permite:
 
 - seleccionar una entidad historica
 - elegir el tipo de salida textual
+- elegir una audiencia objetivo
+- sobrescribir tono, profundidad, longitud y proposito
 - elegir provider LLM, provider de imagen y provider de embeddings
 - activar o desactivar texto, imagen, LLM y RAG
-- elegir `image_mode`, `visual_style` y tamano de imagen
-- revisar contexto base, contexto recuperado y chunks relevantes
+- comparar dos audiencias sobre la misma entidad
+
+## Fase 6: personalizacion por audiencia
+
+La Fase 6 agrega una capa de personalizacion controlada que adapta el contenido segun audiencia, tono, profundidad, longitud y proposito, sin relajar las restricciones de factualidad.
+
+### Que es la personalizacion
+
+La personalizacion no cambia los hechos ni agrega informacion nueva. Su funcion es ajustar:
+
+- como se redacta el contenido
+- cuanto detalle se ofrece
+- que estructura o enfasis se prioriza
+- como se formula el prompt visual en casos compatibles
+
+Siempre se mantiene la regla central del proyecto:
+
+- usar solo contexto base y contexto recuperado
+- no inventar datos
+
+### Perfiles de audiencia soportados
+
+El archivo `data/audience_profiles.json` incluye perfiles iniciales como:
+
+- `estudiante_secundaria`
+- `estudiante_universitario`
+- `turista_general`
+- `docente`
+- `divulgacion_redes`
+- `investigador_inicial`
+
+Cada perfil define:
+
+- tono preferido
+- profundidad preferida
+- longitud preferida
+- proposito preferido
+- reglas de estilo
+- patrones a evitar
+
+### Parametros editables
+
+La app permite usar el perfil tal cual o sobrescribir de forma puntual:
+
+- `tone`: `formal`, `didactico`, `divulgativo`, `promocional`, `narrativo`
+- `depth`: `baja`, `media`, `alta`
+- `length`: `corta`, `media`, `larga`
+- `purpose`: `educativo`, `turistico`, `academico`, `redes`, `divulgacion`
+
+Los overrides del usuario se resuelven encima del perfil seleccionado y producen una configuracion final de personalizacion.
+
+### Como se aplica al texto
+
+La personalizacion textual afecta:
+
+- el prompt textual
+- el tono pedido al modelo
+- la profundidad deseada
+- la longitud orientativa
+- el enfoque principal del contenido
+- el fallback local cuando no se usa LLM o el provider falla
+
+Esto se implementa en:
+
+- `src/audience_profiles.py`
+- `src/personalization.py`
+- `src/prompt_builder.py`
+- `src/fallback_generator.py`
+- `src/generator.py`
+
+### Como se aplica a la imagen
+
+La personalizacion visual es ligera y controlada. No cambia los hechos visuales permitidos, pero si orienta el enfoque:
+
+- `turista_general`: mas patrimonial y atractivo cultural
+- `docente`: mas claro y explicativo
+- `divulgacion_redes`: mas sintetico e impactante
+- `investigador_inicial`: mas sobrio y documental
+
+Esto se implementa en:
+
+- `src/image_prompt_builder.py`
+- `src/image_generator.py`
+
+### Como comparar audiencias
+
+La app incluye una opcion simple para comparar dos audiencias sobre la misma entidad.
+
+Flujo:
+
+1. eliges una audiencia principal
+2. activas `Comparar dos audiencias`
+3. eliges una segunda audiencia
+4. generas el contenido
+
+La app muestra ambas configuraciones y los textos lado a lado para una comparacion rapida.
 
 ## Fase 5: generacion de imagenes
 
-La Fase 5 agrega una capacidad visual separada de la generacion textual. El objetivo es producir prompts visuales historicos bien controlados y, cuando haya provider disponible, generar imagenes apoyadas en el mismo grounding del sistema textual.
+La Fase 5 agrega una capacidad visual separada de la generacion textual.
 
 ### Arquitectura visual
 
-- `src/image_prompt_builder.py`: construye prompts visuales en espanol a partir de entidad, contexto base, contexto recuperado, modo visual y estilo.
-- `src/image_client.py`: encapsula la generacion de imagenes, empezando con `openai` y un fallback seguro.
-- `src/image_generator.py`: coordina grounding visual, RAG opcional, prompt visual y llamada al provider de imagen.
-- `src/generator.py`: ahora expone `generate_multimodal_content()` para texto, imagen o modo combinado.
-- `app/streamlit_app.py`: permite flujo textual, visual o ambos sin romper la experiencia existente.
+- `src/image_prompt_builder.py`: construye prompts visuales en espanol.
+- `src/image_client.py`: encapsula la generacion de imagenes con `openai` y fallback.
+- `src/image_generator.py`: coordina grounding visual, RAG opcional y prompt visual.
+- `src/generator.py`: expone `generate_multimodal_content()` para texto, imagen o ambos.
 
-### Texto, imagen y modo combinado
-
-- Texto:
-  usa `generate_content()` y conserva la logica de Fase 4.
-
-- Imagen:
-  usa `generate_visual_content()` y puede apoyarse en RAG para enriquecer el prompt visual.
-
-- Texto + imagen:
-  usa `generate_multimodal_content()` para coordinar ambos resultados sin acoplar las capas.
-
-### Modos visuales
-
-`image_mode` soporta:
-
-- `retrato_historico`
-- `escena_historica`
-- `postal_turistica`
-- `ilustracion_educativa`
-
-Cada modo cambia la composicion sugerida para el provider visual.
-
-### Estilos visuales
-
-`visual_style` soporta:
-
-- `realista`
-- `pintura_oleo`
-- `grabado_antiguo`
-- `ilustracion_editorial`
-
-Esto permite orientar el lenguaje visual sin asumir hiperrealismo por defecto.
-
-### Grounding visual
-
-El prompt visual usa:
-
-1. la entidad seleccionada
-2. el contexto base estructurado
-3. el contexto recuperado por RAG cuando esta disponible
-
-Las instrucciones visuales refuerzan:
-
-- usar solo contexto disponible
-- no inventar atributos historicos no sustentados
-- ser prudente cuando faltan detalles visuales
-- evitar anacronismos, logos modernos y texto incrustado
-
-### Provider visual y fallback
-
-Providers iniciales:
+### Providers visuales
 
 - `openai`
 - `fallback`
 
-Comportamiento:
-
-- si `openai` esta disponible y la llamada funciona, se devuelve imagen local o referencia de imagen
-- si falta la API key o falla la solicitud, el sistema devuelve un fallback seguro con el prompt visual listo para copiar
-- la app no se rompe cuando falla la imagen
-
-### Guardado de imagenes
-
-Cuando el provider devuelve imagen utilizable, el sistema intenta guardarla en:
-
-- `outputs/generated_images/`
-
-Si no puede guardar localmente, conserva la referencia devuelta por el provider cuando exista.
+Si el provider no esta disponible, el sistema devuelve un fallback seguro con el prompt visual listo para copiar.
 
 ## Fase 4: RAG
 
@@ -167,13 +203,10 @@ La Fase 4 agrega Retrieval-Augmented Generation sobre la base historica local si
 
 ### Arquitectura RAG
 
-- `src/rag_chunker.py`: transforma cada entidad del JSON en chunks recuperables por categoria.
-- `src/embeddings_client.py`: abstrae la generacion de embeddings para `openai` y `gemini`.
-- `src/rag_indexer.py`: genera embeddings, normaliza vectores y guarda el indice local en `data/rag/`.
-- `src/rag_retriever.py`: carga el indice, embebe la consulta y recupera los chunks mas relevantes por similitud coseno.
-- `src/context_builder.py`: construye contexto base estructurado y contexto recuperado.
-- `src/prompt_builder.py`: combina contexto base y contexto recuperado en un prompt controlado en espanol.
-- `src/generator.py`: coordina RAG, LLM, imagen y fallback.
+- `src/rag_chunker.py`: transforma entidades del JSON en chunks recuperables.
+- `src/embeddings_client.py`: abstrae embeddings para `openai` y `gemini`.
+- `src/rag_indexer.py`: genera embeddings y guarda el indice local en `data/rag/`.
+- `src/rag_retriever.py`: recupera los chunks mas relevantes por similitud coseno.
 
 ### Construir el indice RAG
 
@@ -191,13 +224,11 @@ python scripts/build_rag_index.py --embedding-provider gemini
 
 ## Fase 3: Generacion hibrida multi-provider
 
-La Fase 3 sigue vigente y se mantiene compatible:
+La Fase 3 se mantiene compatible:
 
 - `llm_client.py` encapsula `openai`, `gemini` y `xai`
 - `fallback_generator.py` mantiene salidas sin LLM
-- `generator.py` decide entre modo `llm` y modo `fallback`
-
-Si el provider LLM falla, el sistema no rompe la app y devuelve una salida local segura.
+- `generator.py` coordina texto, imagen, RAG y fallback
 
 ## Tipos de salida textual
 
@@ -214,18 +245,19 @@ Ejecutar toda la suite:
 pytest
 ```
 
-La cobertura de Fase 5 incluye:
+La cobertura de Fase 6 incluye:
 
-- construccion de prompts visuales
-- cliente de imagen sin llamadas reales
-- flujo visual con y sin RAG
-- flujo ligero de la app para texto e imagen
+- carga y validacion de perfiles de audiencia
+- resolucion de configuracion de personalizacion
+- construccion de prompts personalizados
+- flujo multimodal personalizado
+- integracion ligera de Streamlit con audiencia y defaults seguros
 
 ## Evolucion futura
 
-La base de Fase 5 queda preparada para:
+La base de Fase 6 queda preparada para:
 
-- sumar nuevos providers visuales
-- extenderse a edicion de imagenes
-- compartir grounding entre texto e imagen con mas eficiencia
-- avanzar hacia una fase multimodal mas completa sin mezclar capas de responsabilidad
+- experimentos de evaluacion posterior por audiencia
+- personalizacion mas fina de estilos visuales
+- nuevas audiencias o perfiles sectoriales
+- fases futuras mas multimodales sin mezclar responsabilidades
