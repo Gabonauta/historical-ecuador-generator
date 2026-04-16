@@ -1,30 +1,44 @@
-"""Utility helpers for the historical Ecuador generator project."""
+"""Utility helpers shared across the project."""
 
 from __future__ import annotations
 
-from typing import Any, Iterable
+from typing import Any, Iterable, TypeVar
 
+
+T = TypeVar("T")
 
 REQUIRED_ENTITY_FIELDS = [
     "id",
     "nombre",
     "tipo",
-    "epoca",
-    "ubicacion",
     "resumen",
     "descripcion_larga",
     "importancia",
-    "lugares_relacionados",
-    "personajes_relacionados",
-    "eventos_relacionados",
-    "etiquetas",
-    "anio_inicio",
-    "anio_fin",
 ]
 
+VALID_ENTITY_TYPES = {"personaje", "lugar", "evento"}
 
-def ensure_list(value: Any) -> list[Any]:
-    """Return a safe list for values that may be null or malformed."""
+
+def safe_str(value: Any, default: str = "") -> str:
+    """Return a stripped string representation for any value."""
+    if value is None:
+        return default
+    return str(value).strip()
+
+
+def normalize_spaces(text: str) -> str:
+    """Collapse repeated whitespace and trim edges."""
+    return " ".join(safe_str(text).split())
+
+
+def normalize_text(value: Any, lowercase: bool = False) -> str:
+    """Normalize text values for storage and comparison."""
+    text = normalize_spaces(safe_str(value))
+    return text.lower() if lowercase else text
+
+
+def safe_list(value: Any) -> list[Any]:
+    """Return a safe list for null, scalar, tuple, or list values."""
     if value is None:
         return []
     if isinstance(value, list):
@@ -34,47 +48,68 @@ def ensure_list(value: Any) -> list[Any]:
     return [value]
 
 
-def safe_strip(value: Any) -> str:
-    """Convert a value into a normalized string."""
-    if value is None:
-        return ""
-    return str(value).strip()
+def unique_preserve_order(items: Iterable[T]) -> list[T]:
+    """Remove duplicates while preserving the first occurrence."""
+    seen: set[Any] = set()
+    result: list[T] = []
+
+    for item in items:
+        marker = item
+        if isinstance(item, list):
+            marker = tuple(item)
+        if marker in seen:
+            continue
+        seen.add(marker)
+        result.append(item)
+
+    return result
+
+
+def safe_int(value: Any) -> int | None:
+    """Convert values into integers when possible."""
+    if value is None or value == "":
+        return None
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float):
+        return int(value)
+
+    text = normalize_text(value)
+    if not text:
+        return None
+
+    try:
+        return int(float(text))
+    except ValueError:
+        return None
 
 
 def has_text(value: Any) -> bool:
     """Check whether a value contains non-empty text."""
-    return bool(safe_strip(value))
-
-
-def compact_whitespace(text: str) -> str:
-    """Collapse repeated whitespace into single spaces."""
-    return " ".join(text.split())
+    return bool(normalize_text(value))
 
 
 def join_non_empty(parts: Iterable[str], separator: str = "\n") -> str:
     """Join only non-empty text fragments preserving order."""
-    cleaned_parts = [safe_strip(part) for part in parts if has_text(part)]
+    cleaned_parts = [normalize_text(part) for part in parts if has_text(part)]
     return separator.join(cleaned_parts)
-
-
-def is_valid_year(value: Any) -> bool:
-    """Return True when the provided year is a meaningful integer."""
-    return isinstance(value, int) and value > 0
 
 
 def format_year_range(start_year: Any, end_year: Any) -> str:
     """Format a start/end year pair for display."""
-    has_start = is_valid_year(start_year)
-    has_end = is_valid_year(end_year)
+    start = safe_int(start_year)
+    end = safe_int(end_year)
 
-    if has_start and has_end:
-        if start_year == end_year:
-            return str(start_year)
-        return f"{start_year} - {end_year}"
-    if has_start:
-        return f"Desde {start_year}"
-    if has_end:
-        return f"Hasta {end_year}"
+    if start and end:
+        if start == end:
+            return str(start)
+        return f"{start} - {end}"
+    if start:
+        return f"Desde {start}"
+    if end:
+        return f"Hasta {end}"
     return ""
 
 
@@ -82,11 +117,20 @@ def validate_entity(entity: dict[str, Any]) -> list[str]:
     """Return the list of required keys missing from an entity."""
     if not isinstance(entity, dict):
         return REQUIRED_ENTITY_FIELDS.copy()
-    return [field for field in REQUIRED_ENTITY_FIELDS if field not in entity]
+
+    missing_fields: list[str] = []
+    for field in REQUIRED_ENTITY_FIELDS:
+        value = entity.get(field)
+        if isinstance(value, list):
+            if not value:
+                missing_fields.append(field)
+        elif not has_text(value):
+            missing_fields.append(field)
+    return missing_fields
 
 
 def validate_entities_payload(payload: Any) -> list[str]:
-    """Validate the full entities payload and report human-readable issues."""
+    """Validate the top-level entities payload."""
     issues: list[str] = []
 
     if not isinstance(payload, list):
@@ -98,6 +142,7 @@ def validate_entities_payload(payload: Any) -> list[str]:
             issues.append(
                 f"La entidad #{index} tiene campos faltantes: {', '.join(missing_fields)}."
             )
+
     return issues
 
 
@@ -113,8 +158,14 @@ def validate_templates_payload(payload: Any) -> list[str]:
     if not isinstance(payload, dict):
         return ["El archivo de plantillas debe contener un objeto JSON."]
 
-    missing = [key for key in expected_keys if key not in payload]
-    if missing:
-        return [f"Faltan plantillas requeridas: {', '.join(sorted(missing))}."]
+    missing_keys = sorted(key for key in expected_keys if key not in payload)
+    if missing_keys:
+        return [f"Faltan plantillas requeridas: {', '.join(missing_keys)}."]
 
     return []
+
+
+# Compatibility aliases for Phase 1 modules.
+safe_strip = safe_str
+compact_whitespace = normalize_spaces
+ensure_list = safe_list

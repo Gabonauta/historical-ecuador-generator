@@ -1,0 +1,11 @@
+{
+  "version": "phase4-v1",
+  "backend": "numpy-cosine",
+  "status": "pending_build",
+  "chunk_count": 0,
+  "entity_count": 0,
+  "embedding_dimension": 0,
+  "embedding_provider": null,
+  "embedding_model": null,
+  "fallback_provider_used": false
+}
