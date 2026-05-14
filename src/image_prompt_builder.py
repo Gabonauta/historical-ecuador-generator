@@ -90,7 +90,7 @@ def build_image_prompt(
     entity_type = normalize_text(entity.get("tipo"), lowercase=True) or "entidad"
 
     prompt_sections = [
-        "Genera una imagen historica del Ecuador con grounding razonable.",
+        "Descripcion visual historica del Ecuador con grounding razonable.",
         f"Entidad principal: {entity_name}.",
         f"Tipo de entidad: {entity_type}.",
         f"Modo visual solicitado: {normalized_mode}.",
