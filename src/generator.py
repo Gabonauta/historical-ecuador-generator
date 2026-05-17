@@ -62,7 +62,7 @@ def generate_content(
                     "se uso el provider compatible con el indice."
                 )
 
-            retrieved_chunks = retrieve(
+            retrieved_chunks = _retrieve_chunks_with_optional_api_key(
                 query=query,
                 top_k=requested_top_k,
                 entity_type=entity.get("tipo"),
@@ -106,7 +106,7 @@ def generate_content(
         )
 
     try:
-        generated_text = generate_text(
+        generated_text = _generate_text_with_optional_api_key(
             provider=provider,
             prompt=prompt,
             model=model,
@@ -212,6 +212,32 @@ def _build_result(
         "generated_text": generated_text,
         "error": error,
     }
+
+
+def _retrieve_chunks_with_optional_api_key(**kwargs: Any) -> list[dict[str, Any]]:
+    """Call the retriever while remaining compatible with older signatures."""
+    if not kwargs.get("api_key"):
+        kwargs.pop("api_key", None)
+        return retrieve(**kwargs)
+
+    try:
+        return retrieve(**kwargs)
+    except TypeError:
+        kwargs.pop("api_key", None)
+        return retrieve(**kwargs)
+
+
+def _generate_text_with_optional_api_key(**kwargs: Any) -> str:
+    """Call the LLM client while remaining compatible with older signatures."""
+    if not kwargs.get("api_key"):
+        kwargs.pop("api_key", None)
+        return generate_text(**kwargs)
+
+    try:
+        return generate_text(**kwargs)
+    except TypeError:
+        kwargs.pop("api_key", None)
+        return generate_text(**kwargs)
 
 
 def generate_multimodal_content(
