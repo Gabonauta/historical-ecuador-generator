@@ -65,6 +65,7 @@ def retrieve(
     provider: str = "openai",
     *,
     model: str | None = None,
+    api_key: str | None = None,
     index_data: dict[str, Any] | None = None,
     chunks_path: str | Path = CHUNKS_PATH,
     embeddings_path: str | Path = EMBEDDINGS_PATH,
@@ -98,7 +99,12 @@ def retrieve(
     filtered_embeddings = embeddings[filtered_indices]
 
     query_embedding = np.asarray(
-        generate_embedding(normalized_query, provider=provider, model=model),
+        generate_embedding(
+            normalized_query,
+            provider=provider,
+            model=model,
+            api_key=api_key,
+        ),
         dtype=np.float32,
     )
     if query_embedding.ndim != 1:

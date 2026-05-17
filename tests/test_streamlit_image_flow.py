@@ -58,12 +58,14 @@ def test_execute_generation_request_accepts_image_parameters(monkeypatch) -> Non
         image_mode="retrato_historico",
         visual_style="realista",
         image_size="1024x1024",
+        api_key_overrides={"openai": "runtime-openai-key"},
         debug_mode=False,
     )
 
     assert captured["generate_text"] is False
     assert captured["generate_image"] is True
     assert captured["image_mode"] == "retrato_historico"
+    assert captured["api_keys"] == {"openai": "runtime-openai-key"}
     assert result["image_result"]["status"] == "fallback"
 
 
@@ -123,8 +125,19 @@ def test_execute_generation_request_handles_fallback_image_result(monkeypatch) -
         image_mode="ilustracion_educativa",
         visual_style="ilustracion_editorial",
         image_size="1024x1024",
+        api_key_overrides=None,
         debug_mode=False,
     )
 
     assert result["text_result"]["generated_text"] == "Texto fallback"
     assert result["image_result"]["provider"] == "fallback"
+
+
+def test_build_api_key_overrides_discards_empty_values() -> None:
+    overrides = streamlit_app.build_api_key_overrides(
+        openai_api_key=" openai-key ",
+        gemini_api_key="",
+        xai_api_key="   ",
+    )
+
+    assert overrides == {"openai": "openai-key"}

@@ -30,6 +30,7 @@ def generate_content(
     top_k: int = 5,
     model: str | None = None,
     embedding_provider: str = "openai",
+    api_keys: dict[str, str] | None = None,
     debug: bool = False,
 ) -> dict[str, Any]:
     """Generate content using an LLM when available, otherwise use safe fallback."""
@@ -43,6 +44,7 @@ def generate_content(
     rag_enabled = False
     resolved_embedding_provider = embedding_provider
     notices: list[str] = []
+    runtime_api_keys = _normalize_api_keys(api_keys)
 
     if use_llm and use_rag:
         query = _build_rag_query(entity, output_type)
@@ -65,6 +67,7 @@ def generate_content(
                 top_k=requested_top_k,
                 entity_type=entity.get("tipo"),
                 provider=resolved_embedding_provider,
+                api_key=runtime_api_keys.get(resolved_embedding_provider.lower()),
                 index_data=index_data,
             )
             if retrieved_chunks:
@@ -108,6 +111,7 @@ def generate_content(
             prompt=prompt,
             model=model,
             temperature=0.3,
+            api_key=runtime_api_keys.get(provider.strip().lower()),
         )
         return _build_result(
             mode="llm",
@@ -225,6 +229,7 @@ def generate_multimodal_content(
     visual_style: str = "realista",
     image_size: str = "1024x1024",
     generate_text: bool = True,
+    api_keys: dict[str, str] | None = None,
     debug: bool = False,
 ) -> dict[str, Any]:
     """Generate text, image, or both while preserving Phase 4 compatibility."""
@@ -244,6 +249,7 @@ def generate_multimodal_content(
             top_k=top_k,
             model=model,
             embedding_provider=embedding_provider,
+            api_keys=api_keys,
             debug=debug,
         )
 
@@ -258,6 +264,7 @@ def generate_multimodal_content(
             visual_style=visual_style,
             size=image_size,
             embedding_provider=embedding_provider,
+            api_keys=api_keys,
             debug=debug,
         )
 
@@ -269,3 +276,17 @@ def generate_multimodal_content(
         "generate_text": generate_text,
         "generate_image": generate_image,
     }
+
+
+def _normalize_api_keys(api_keys: dict[str, str] | None) -> dict[str, str]:
+    """Normalize runtime API key overrides keyed by provider name."""
+    if not api_keys:
+        return {}
+
+    normalized: dict[str, str] = {}
+    for provider, raw_value in api_keys.items():
+        normalized_provider = safe_str(provider).strip().lower()
+        normalized_key = safe_str(raw_value).strip()
+        if normalized_provider and normalized_key:
+            normalized[normalized_provider] = normalized_key
+    return normalized

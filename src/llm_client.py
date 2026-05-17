@@ -38,22 +38,30 @@ class ProviderRequestError(LLMClientError):
     """Raised when a provider request fails."""
 
 
-def get_safe_error_message(error: Exception) -> str:
+def get_safe_error_message(
+    error: Exception,
+    extra_secrets: list[str] | tuple[str, ...] | None = None,
+) -> str:
     """Return a sanitized error summary without exposing secrets."""
     message = f"{type(error).__name__}: {error}"
-    for env_key in ENV_KEYS.values():
-        secret = os.getenv(env_key)
+    secrets = [os.getenv(env_key) for env_key in ENV_KEYS.values()]
+    if extra_secrets:
+        secrets.extend(extra_secrets)
+    for secret in secrets:
         if secret:
             message = message.replace(secret, "[REDACTED]")
     return message
 
 
-def get_safe_error_chain(error: Exception) -> str:
+def get_safe_error_chain(
+    error: Exception,
+    extra_secrets: list[str] | tuple[str, ...] | None = None,
+) -> str:
     """Return a sanitized summary including the chained root cause when present."""
-    parts = [get_safe_error_message(error)]
+    parts = [get_safe_error_message(error, extra_secrets=extra_secrets)]
     cause = getattr(error, "__cause__", None)
     while cause:
-        parts.append(get_safe_error_message(cause))
+        parts.append(get_safe_error_message(cause, extra_secrets=extra_secrets))
         cause = getattr(cause, "__cause__", None)
     return " | Causa: ".join(parts)
 
@@ -77,10 +85,16 @@ def load_env_file(path: Path | None = None) -> None:
             os.environ[key] = value
 
 
-def get_available_providers() -> dict[str, bool]:
+def get_available_providers(
+    api_key_overrides: dict[str, str] | None = None,
+) -> dict[str, bool]:
     """Return which configured providers currently have an API key."""
     load_env_file()
-    return {provider: bool(os.getenv(env_key)) for provider, env_key in ENV_KEYS.items()}
+    overrides = _normalize_api_key_overrides(api_key_overrides)
+    return {
+        provider: bool(overrides.get(provider) or os.getenv(env_key))
+        for provider, env_key in ENV_KEYS.items()
+    }
 
 
 def generate_text(
@@ -88,6 +102,7 @@ def generate_text(
     prompt: str,
     model: str | None = None,
     temperature: float = 0.3,
+    api_key: str | None = None,
 ) -> str:
     """Generate text using the selected provider with safe, provider-specific logic."""
     load_env_file()
@@ -95,20 +110,44 @@ def generate_text(
     if normalized_provider not in ENV_KEYS:
         raise UnsupportedProviderError("Proveedor LLM no soportado.")
 
-    api_key = os.getenv(ENV_KEYS[normalized_provider])
-    if not api_key:
+    resolved_api_key = _normalize_api_key(api_key) or os.getenv(ENV_KEYS[normalized_provider])
+    if not resolved_api_key:
         raise ProviderConfigError("El proveedor solicitado no tiene una API key configurada.")
 
     selected_model = model or DEFAULT_MODELS[normalized_provider]
 
     if normalized_provider == "openai":
-        return _generate_with_openai(api_key, prompt, selected_model, temperature)
+        return _generate_with_openai(resolved_api_key, prompt, selected_model, temperature)
     if normalized_provider == "gemini":
-        return _generate_with_gemini(api_key, prompt, selected_model, temperature)
+        return _generate_with_gemini(resolved_api_key, prompt, selected_model, temperature)
     if normalized_provider == "xai":
-        return _generate_with_xai(api_key, prompt, selected_model, temperature)
+        return _generate_with_xai(resolved_api_key, prompt, selected_model, temperature)
 
     raise UnsupportedProviderError("Proveedor LLM no soportado.")
+
+
+def _normalize_api_key_overrides(
+    api_key_overrides: dict[str, str] | None,
+) -> dict[str, str]:
+    """Return trimmed provider-specific API key overrides."""
+    if not api_key_overrides:
+        return {}
+
+    normalized: dict[str, str] = {}
+    for provider, raw_value in api_key_overrides.items():
+        normalized_provider = provider.strip().lower()
+        normalized_key = _normalize_api_key(raw_value)
+        if normalized_provider in ENV_KEYS and normalized_key:
+            normalized[normalized_provider] = normalized_key
+    return normalized
+
+
+def _normalize_api_key(api_key: str | None) -> str | None:
+    """Normalize a runtime API key without persisting it anywhere."""
+    if api_key is None:
+        return None
+    normalized = api_key.strip()
+    return normalized or None
 
 
 def _generate_with_openai(api_key: str, prompt: str, model: str, temperature: float) -> str:

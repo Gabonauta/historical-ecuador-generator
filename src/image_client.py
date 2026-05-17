@@ -54,11 +54,14 @@ class ImageProviderRequestError(ImageClientError):
     """Raised when the image provider request fails."""
 
 
-def get_available_image_providers() -> dict[str, bool]:
+def get_available_image_providers(
+    api_key_overrides: dict[str, str] | None = None,
+) -> dict[str, bool]:
     """Return which image providers are currently usable."""
     load_env_file()
+    overrides = _normalize_api_key_overrides(api_key_overrides)
     return {
-        "openai": bool(os.getenv(IMAGE_ENV_KEYS["openai"])),
+        "openai": bool(overrides.get("openai") or os.getenv(IMAGE_ENV_KEYS["openai"])),
         "fallback": True,
     }
 
@@ -69,6 +72,7 @@ def generate_image(
     size: str = "1024x1024",
     quality: str = "standard",
     save_dir: str | None = None,
+    api_key: str | None = None,
 ) -> dict[str, Any]:
     """Generate an image using the selected provider or return a safe fallback."""
     load_env_file()
@@ -104,8 +108,8 @@ def generate_image(
             error="Calidad de imagen no soportada; se devolvio solo el prompt visual.",
         )
 
-    api_key = os.getenv(IMAGE_ENV_KEYS[normalized_provider])
-    if not api_key:
+    resolved_api_key = _normalize_api_key(api_key) or os.getenv(IMAGE_ENV_KEYS[normalized_provider])
+    if not resolved_api_key:
         return _build_fallback_result(
             prompt=normalized_prompt,
             error="El proveedor de imagen solicitado no tiene una API key configurada.",
@@ -114,7 +118,7 @@ def generate_image(
     try:
         if normalized_provider == "openai":
             provider_result = _generate_with_openai(
-                api_key=api_key,
+                api_key=resolved_api_key,
                 prompt=normalized_prompt,
                 size=normalized_size,
                 quality=normalized_quality,
@@ -125,12 +129,12 @@ def generate_image(
     except ImageClientError as error:
         return _build_fallback_result(
             prompt=normalized_prompt,
-            error=get_safe_error_chain(error),
+            error=get_safe_error_chain(error, extra_secrets=[resolved_api_key]),
         )
     except Exception as error:
         return _build_fallback_result(
             prompt=normalized_prompt,
-            error=get_safe_error_chain(error),
+            error=get_safe_error_chain(error, extra_secrets=[resolved_api_key]),
         )
 
     return {
@@ -233,3 +237,25 @@ def _build_fallback_result(prompt: str, error: str | None) -> dict[str, Any]:
         "image_url": None,
         "error": error,
     }
+
+
+def _normalize_api_key_overrides(
+    api_key_overrides: dict[str, str] | None,
+) -> dict[str, str]:
+    """Return trimmed runtime overrides for image providers."""
+    if not api_key_overrides:
+        return {}
+
+    normalized: dict[str, str] = {}
+    for provider, raw_value in api_key_overrides.items():
+        normalized_provider = normalize_text(provider, lowercase=True)
+        normalized_key = _normalize_api_key(raw_value)
+        if normalized_provider in IMAGE_ENV_KEYS and normalized_key:
+            normalized[normalized_provider] = normalized_key
+    return normalized
+
+
+def _normalize_api_key(api_key: str | None) -> str | None:
+    """Normalize a runtime API key without persisting it."""
+    normalized = normalize_text(api_key)
+    return normalized or None
