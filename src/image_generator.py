@@ -25,6 +25,7 @@ def generate_visual_content(
     embedding_provider: str = "openai",
     quality: str = "standard",
     save_dir: str | None = None,
+    api_keys: dict[str, str] | None = None,
     debug: bool = False,
 ) -> dict[str, Any]:
     """Generate visual content using grounded context and a safe image provider wrapper."""
@@ -35,6 +36,7 @@ def generate_visual_content(
     rag_enabled = False
     resolved_embedding_provider = embedding_provider
     notices: list[str] = []
+    runtime_api_keys = _normalize_api_keys(api_keys)
 
     if use_rag:
         query = _build_visual_rag_query(entity, image_mode, visual_style)
@@ -57,6 +59,7 @@ def generate_visual_content(
                 top_k=requested_top_k,
                 entity_type=entity.get("tipo"),
                 provider=resolved_embedding_provider,
+                api_key=runtime_api_keys.get(resolved_embedding_provider.lower()),
                 index_data=index_data,
             )
             if retrieved_chunks:
@@ -107,6 +110,7 @@ def generate_visual_content(
         size=size,
         quality=quality,
         save_dir=save_dir or str(Path(DEFAULT_IMAGE_SAVE_DIR)),
+        api_key=runtime_api_keys.get(provider.strip().lower()),
     )
 
     final_error = _join_notices(notices + [image_result.get("error")])
@@ -162,3 +166,17 @@ def _join_notices(notices: list[str | None]) -> str | None:
     if not cleaned_notices:
         return None
     return " ".join(cleaned_notices)
+
+
+def _normalize_api_keys(api_keys: dict[str, str] | None) -> dict[str, str]:
+    """Normalize runtime API key overrides keyed by provider name."""
+    if not api_keys:
+        return {}
+
+    normalized: dict[str, str] = {}
+    for provider, raw_value in api_keys.items():
+        normalized_provider = safe_str(provider).strip().lower()
+        normalized_key = safe_str(raw_value).strip()
+        if normalized_provider and normalized_key:
+            normalized[normalized_provider] = normalized_key
+    return normalized

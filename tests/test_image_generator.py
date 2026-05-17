@@ -136,3 +136,31 @@ def test_generate_visual_content_uses_prompt_builder(monkeypatch) -> None:
 
     assert captured["image_mode"] == "escena_historica"
     assert captured["visual_style"] == "grabado_antiguo"
+
+
+def test_generate_visual_content_passes_runtime_api_keys(monkeypatch) -> None:
+    captured: dict[str, object] = {}
+
+    monkeypatch.setattr(image_generator, "build_image_prompt", lambda **_: "PROMPT VISUAL")
+
+    def fake_generate_image(**kwargs: object) -> dict[str, object]:
+        captured.update(kwargs)
+        return {
+            "provider": "openai",
+            "status": "success",
+            "prompt": "PROMPT VISUAL",
+            "image_path": "/tmp/image.png",
+            "image_url": None,
+            "error": None,
+        }
+
+    monkeypatch.setattr(image_generator, "generate_image", fake_generate_image)
+
+    image_generator.generate_visual_content(
+        build_entity(),
+        provider="openai",
+        use_rag=False,
+        api_keys={"openai": "runtime-openai-key"},
+    )
+
+    assert captured["api_key"] == "runtime-openai-key"

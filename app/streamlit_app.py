@@ -109,6 +109,7 @@ def execute_generation_request(
     image_mode: str,
     visual_style: str,
     image_size: str,
+    api_key_overrides: dict[str, str] | None,
     debug_mode: bool,
 ) -> dict:
     """Execute the multimodal generation flow with a light validation layer."""
@@ -128,9 +129,24 @@ def execute_generation_request(
         image_mode=image_mode,
         visual_style=visual_style,
         image_size=image_size,
+        api_keys=api_key_overrides,
         generate_text=generate_text,
         debug=debug_mode,
     )
+
+
+def build_api_key_overrides(
+    openai_api_key: str,
+    gemini_api_key: str,
+    xai_api_key: str,
+) -> dict[str, str]:
+    """Build runtime-only API key overrides from UI inputs."""
+    overrides = {
+        "openai": openai_api_key.strip(),
+        "gemini": gemini_api_key.strip(),
+        "xai": xai_api_key.strip(),
+    }
+    return {provider: api_key for provider, api_key in overrides.items() if api_key}
 
 
 def render_text_result(result: dict) -> None:
@@ -283,14 +299,48 @@ def main() -> None:
     )
     debug_mode = st.checkbox("Mostrar diagnostico seguro", value=False)
 
+    with st.expander("API keys temporales del usuario", expanded=False):
+        st.caption(
+            "Puedes introducir tus propias API keys para OpenAI, Gemini y xAI. "
+            "Estas claves se usan solo durante esta sesion de la app y no se guardan "
+            "en el historial local, archivos del proyecto ni mensajes de error."
+        )
+        openai_api_key = st.text_input(
+            "OPENAI_API_KEY temporal",
+            type="password",
+            placeholder="sk-...",
+            help="Tambien se reutiliza para embeddings OpenAI e imagen OpenAI cuando aplique.",
+        )
+        gemini_api_key = st.text_input(
+            "GEMINI_API_KEY temporal",
+            type="password",
+            placeholder="AIza...",
+            help="Tambien se reutiliza para embeddings Gemini cuando aplique.",
+        )
+        xai_api_key = st.text_input(
+            "XAI_API_KEY temporal",
+            type="password",
+            placeholder="xai-...",
+        )
+
+    api_key_overrides = build_api_key_overrides(
+        openai_api_key=openai_api_key,
+        gemini_api_key=gemini_api_key,
+        xai_api_key=xai_api_key,
+    )
+
     entity = get_entity_by_name(entities, selected_name)
     if entity is None:
         st.error("No se pudo encontrar la entidad seleccionada.")
         st.stop()
 
-    available_providers = get_available_providers()
-    available_embedding_providers = get_available_embedding_providers()
-    available_image_providers = get_available_image_providers()
+    available_providers = get_available_providers(api_key_overrides=api_key_overrides)
+    available_embedding_providers = get_available_embedding_providers(
+        api_key_overrides=api_key_overrides
+    )
+    available_image_providers = get_available_image_providers(
+        api_key_overrides=api_key_overrides
+    )
     rag_status = get_cached_rag_status()
 
     with st.expander("Estado de providers e indice RAG", expanded=False):
@@ -341,6 +391,7 @@ def main() -> None:
                 image_mode=image_mode,
                 visual_style=visual_style,
                 image_size=image_size,
+                api_key_overrides=api_key_overrides,
                 debug_mode=debug_mode,
             )
         except ValueError as error:

@@ -17,6 +17,19 @@ def test_get_available_providers_reads_env(monkeypatch) -> None:
     assert available == {"openai": True, "gemini": False, "xai": True}
 
 
+def test_get_available_providers_accepts_runtime_overrides(monkeypatch) -> None:
+    monkeypatch.setattr(llm_client, "DOTENV_PATH", Path("/tmp/nonexistent-phase3.env"))
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("XAI_API_KEY", raising=False)
+
+    available = llm_client.get_available_providers(
+        api_key_overrides={"gemini": "temporary-key"}
+    )
+
+    assert available == {"openai": False, "gemini": True, "xai": False}
+
+
 def test_generate_text_raises_controlled_error_when_key_missing(monkeypatch) -> None:
     monkeypatch.setattr(llm_client, "DOTENV_PATH", Path("/tmp/nonexistent-phase3.env"))
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
@@ -31,6 +44,30 @@ def test_generate_text_raises_controlled_error_when_key_missing(monkeypatch) -> 
 def test_generate_text_validates_provider(monkeypatch) -> None:
     with pytest.raises(llm_client.UnsupportedProviderError):
         llm_client.generate_text(provider="otro", prompt="hola")
+
+
+def test_generate_text_uses_runtime_api_key_override(monkeypatch) -> None:
+    captured: dict[str, object] = {}
+    monkeypatch.setattr(llm_client, "DOTENV_PATH", Path("/tmp/nonexistent-phase3.env"))
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+    def fake_generate(api_key: str, prompt: str, model: str, temperature: float) -> str:
+        captured["api_key"] = api_key
+        captured["prompt"] = prompt
+        captured["model"] = model
+        captured["temperature"] = temperature
+        return "Texto"
+
+    monkeypatch.setattr(llm_client, "_generate_with_openai", fake_generate)
+
+    result = llm_client.generate_text(
+        provider="openai",
+        prompt="hola",
+        api_key="runtime-openai-key",
+    )
+
+    assert result == "Texto"
+    assert captured["api_key"] == "runtime-openai-key"
 
 
 def test_error_messages_do_not_expose_secrets(monkeypatch) -> None:

@@ -36,11 +36,14 @@ class EmbeddingProviderRequestError(EmbeddingsClientError):
     """Raised when the provider request fails."""
 
 
-def get_available_embedding_providers() -> dict[str, bool]:
+def get_available_embedding_providers(
+    api_key_overrides: dict[str, str] | None = None,
+) -> dict[str, bool]:
     """Return which embeddings providers have an API key configured."""
     load_env_file()
+    overrides = _normalize_api_key_overrides(api_key_overrides)
     return {
-        provider: bool(os.getenv(env_key))
+        provider: bool(overrides.get(provider) or os.getenv(env_key))
         for provider, env_key in EMBEDDING_ENV_KEYS.items()
     }
 
@@ -49,9 +52,10 @@ def generate_embedding(
     text: str,
     provider: str = "openai",
     model: str | None = None,
+    api_key: str | None = None,
 ) -> list[float]:
     """Generate one embedding vector for the provided text."""
-    embeddings = generate_embeddings([text], provider=provider, model=model)
+    embeddings = generate_embeddings([text], provider=provider, model=model, api_key=api_key)
     return embeddings[0]
 
 
@@ -59,6 +63,7 @@ def generate_embeddings(
     texts: list[str],
     provider: str = "openai",
     model: str | None = None,
+    api_key: str | None = None,
 ) -> list[list[float]]:
     """Generate embeddings for multiple texts using the selected provider."""
     load_env_file()
@@ -68,8 +73,8 @@ def generate_embeddings(
         raise UnsupportedEmbeddingProviderError("Proveedor de embeddings no soportado.")
 
     prepared_texts = [_validate_text(text) for text in texts]
-    api_key = os.getenv(EMBEDDING_ENV_KEYS[normalized_provider])
-    if not api_key:
+    resolved_api_key = _normalize_api_key(api_key) or os.getenv(EMBEDDING_ENV_KEYS[normalized_provider])
+    if not resolved_api_key:
         raise EmbeddingProviderConfigError(
             "El proveedor solicitado no tiene una API key configurada."
         )
@@ -78,9 +83,9 @@ def generate_embeddings(
 
     try:
         if normalized_provider == "openai":
-            return _generate_with_openai(api_key, prepared_texts, selected_model)
+            return _generate_with_openai(resolved_api_key, prepared_texts, selected_model)
         if normalized_provider == "gemini":
-            return _generate_with_gemini(api_key, prepared_texts, selected_model)
+            return _generate_with_gemini(resolved_api_key, prepared_texts, selected_model)
     except EmbeddingsClientError:
         raise
     except Exception as error:
@@ -208,3 +213,25 @@ def _validate_embeddings_shape(texts: list[str], embeddings: list[list[float]]) 
             raise EmbeddingProviderRequestError(
                 "El proveedor de embeddings devolvio vectores de tamano inconsistente."
             )
+
+
+def _normalize_api_key_overrides(
+    api_key_overrides: dict[str, str] | None,
+) -> dict[str, str]:
+    """Return trimmed runtime overrides for embeddings providers."""
+    if not api_key_overrides:
+        return {}
+
+    normalized: dict[str, str] = {}
+    for provider, raw_value in api_key_overrides.items():
+        normalized_provider = normalize_text(provider, lowercase=True)
+        normalized_key = _normalize_api_key(raw_value)
+        if normalized_provider in EMBEDDING_ENV_KEYS and normalized_key:
+            normalized[normalized_provider] = normalized_key
+    return normalized
+
+
+def _normalize_api_key(api_key: str | None) -> str | None:
+    """Normalize a runtime API key without persisting it."""
+    normalized = normalize_text(api_key)
+    return normalized or None

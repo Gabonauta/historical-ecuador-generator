@@ -159,3 +159,35 @@ def test_generate_content_returns_consistent_rag_output_dict(monkeypatch) -> Non
         "generated_text",
         "error",
     }
+
+
+def test_generate_content_passes_runtime_api_keys_to_retrieval_and_llm(monkeypatch) -> None:
+    captured: dict[str, object] = {}
+    monkeypatch.setattr(
+        generator,
+        "load_index",
+        lambda: {"metadata": {"embedding_provider": "openai"}},
+    )
+
+    def fake_retrieve(**kwargs: object) -> list[dict]:
+        captured["retrieve"] = kwargs
+        return build_retrieved_chunks()
+
+    def fake_generate_text(**kwargs: object) -> str:
+        captured["generate_text"] = kwargs
+        return "Texto generado por LLM"
+
+    monkeypatch.setattr(generator, "retrieve", fake_retrieve)
+    monkeypatch.setattr(generator, "generate_text", fake_generate_text)
+
+    generator.generate_content(
+        build_entity(),
+        "ficha_historica",
+        provider="openai",
+        use_llm=True,
+        use_rag=True,
+        api_keys={"openai": "runtime-openai-key"},
+    )
+
+    assert captured["retrieve"]["api_key"] == "runtime-openai-key"
+    assert captured["generate_text"]["api_key"] == "runtime-openai-key"
