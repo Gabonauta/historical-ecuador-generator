@@ -116,23 +116,30 @@ def execute_generation_request(
     if not generate_text and not generate_image:
         raise ValueError("Debes activar al menos texto o imagen.")
 
-    return generate_multimodal_content(
-        entity=entity,
-        output_type=output_type,
-        llm_provider=llm_provider,
-        image_provider=image_provider,
-        use_llm=use_llm,
-        use_rag=use_rag,
-        top_k=top_k,
-        embedding_provider=embedding_provider,
-        generate_image=generate_image,
-        image_mode=image_mode,
-        visual_style=visual_style,
-        image_size=image_size,
-        api_keys=api_key_overrides,
-        generate_text=generate_text,
-        debug=debug_mode,
-    )
+    generation_kwargs = {
+        "entity": entity,
+        "output_type": output_type,
+        "llm_provider": llm_provider,
+        "image_provider": image_provider,
+        "use_llm": use_llm,
+        "use_rag": use_rag,
+        "top_k": top_k,
+        "embedding_provider": embedding_provider,
+        "generate_image": generate_image,
+        "image_mode": image_mode,
+        "visual_style": visual_style,
+        "image_size": image_size,
+        "generate_text": generate_text,
+        "debug": debug_mode,
+    }
+    if api_key_overrides:
+        generation_kwargs["api_keys"] = api_key_overrides
+
+    try:
+        return generate_multimodal_content(**generation_kwargs)
+    except TypeError:
+        generation_kwargs.pop("api_keys", None)
+        return generate_multimodal_content(**generation_kwargs)
 
 
 def build_api_key_overrides(
@@ -147,6 +154,44 @@ def build_api_key_overrides(
         "xai": xai_api_key.strip(),
     }
     return {provider: api_key for provider, api_key in overrides.items() if api_key}
+
+
+def get_provider_availability_snapshot(
+    api_key_overrides: dict[str, str] | None,
+) -> tuple[dict[str, bool], dict[str, bool], dict[str, bool]]:
+    """Load provider availability while remaining compatible with older signatures."""
+    available_providers = _call_provider_availability(
+        get_available_providers,
+        api_key_overrides=api_key_overrides,
+    )
+    available_embedding_providers = _call_provider_availability(
+        get_available_embedding_providers,
+        api_key_overrides=api_key_overrides,
+    )
+    available_image_providers = _call_provider_availability(
+        get_available_image_providers,
+        api_key_overrides=api_key_overrides,
+    )
+    return (
+        available_providers,
+        available_embedding_providers,
+        available_image_providers,
+    )
+
+
+def _call_provider_availability(
+    loader: object,
+    *,
+    api_key_overrides: dict[str, str] | None,
+) -> dict[str, bool]:
+    """Call provider availability helpers with graceful fallback for older signatures."""
+    if not api_key_overrides:
+        return loader()
+
+    try:
+        return loader(api_key_overrides=api_key_overrides)
+    except TypeError:
+        return loader()
 
 
 def render_text_result(result: dict) -> None:
@@ -334,13 +379,11 @@ def main() -> None:
         st.error("No se pudo encontrar la entidad seleccionada.")
         st.stop()
 
-    available_providers = get_available_providers(api_key_overrides=api_key_overrides)
-    available_embedding_providers = get_available_embedding_providers(
-        api_key_overrides=api_key_overrides
-    )
-    available_image_providers = get_available_image_providers(
-        api_key_overrides=api_key_overrides
-    )
+    (
+        available_providers,
+        available_embedding_providers,
+        available_image_providers,
+    ) = get_provider_availability_snapshot(api_key_overrides)
     rag_status = get_cached_rag_status()
 
     with st.expander("Estado de providers e indice RAG", expanded=False):
