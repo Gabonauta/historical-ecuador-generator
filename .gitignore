@@ -5,6 +5,7 @@ venv/
 .venv/
 .env
 outputs/generated_images/
+data/app_state.sqlite3*
 data/rag/*.npy
 data/processed/*.csv
 data/processed/*.json

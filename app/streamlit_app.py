@@ -20,6 +20,7 @@ from src.image_prompt_builder import SUPPORTED_IMAGE_MODES, SUPPORTED_VISUAL_STY
 from src.llm_client import get_available_providers
 from src.loader import get_entity_by_name, get_entity_names, load_historical_entities
 from src.rag_retriever import RAGRetrieverError, load_index
+import src.history_store as history_store
 
 
 st.set_page_config(
@@ -27,6 +28,12 @@ st.set_page_config(
     page_icon="📚",
     layout="wide",
 )
+
+
+get_generation_run = history_store.get_generation_run
+init_store = history_store.init_store
+list_generation_runs = history_store.list_generation_runs
+save_generation_run = history_store.save_generation_run
 
 
 @st.cache_data(show_spinner=False)
@@ -94,6 +101,40 @@ def render_retrieved_chunks(chunks: list[dict]) -> None:
             st.write(chunk.get("texto", ""))
 
 
+def build_generation_request_payload(
+    *,
+    output_type: str,
+    llm_provider: str,
+    image_provider: str,
+    embedding_provider: str,
+    use_llm: bool,
+    use_rag: bool,
+    top_k: int,
+    generate_text: bool,
+    generate_image: bool,
+    image_mode: str,
+    visual_style: str,
+    image_size: str,
+    debug_mode: bool,
+) -> dict:
+    """Build a serializable snapshot of the generation request options."""
+    return {
+        "output_type": output_type,
+        "llm_provider": llm_provider,
+        "image_provider": image_provider,
+        "embedding_provider": embedding_provider,
+        "use_llm": use_llm,
+        "use_rag": use_rag,
+        "top_k": top_k,
+        "generate_text": generate_text,
+        "generate_image": generate_image,
+        "image_mode": image_mode,
+        "visual_style": visual_style,
+        "image_size": image_size,
+        "debug_mode": debug_mode,
+    }
+
+
 def execute_generation_request(
     *,
     entity: dict,
@@ -116,23 +157,68 @@ def execute_generation_request(
     if not generate_text and not generate_image:
         raise ValueError("Debes activar al menos texto o imagen.")
 
-    return generate_multimodal_content(
-        entity=entity,
-        output_type=output_type,
-        llm_provider=llm_provider,
-        image_provider=image_provider,
-        use_llm=use_llm,
-        use_rag=use_rag,
-        top_k=top_k,
-        embedding_provider=embedding_provider,
-        generate_image=generate_image,
-        image_mode=image_mode,
-        visual_style=visual_style,
-        image_size=image_size,
-        api_keys=api_key_overrides,
-        generate_text=generate_text,
-        debug=debug_mode,
+    generation_kwargs = {
+        "entity": entity,
+        "output_type": output_type,
+        "llm_provider": llm_provider,
+        "image_provider": image_provider,
+        "use_llm": use_llm,
+        "use_rag": use_rag,
+        "top_k": top_k,
+        "embedding_provider": embedding_provider,
+        "generate_image": generate_image,
+        "image_mode": image_mode,
+        "visual_style": visual_style,
+        "image_size": image_size,
+        "generate_text": generate_text,
+        "debug": debug_mode,
+    }
+    if api_key_overrides:
+        generation_kwargs["api_keys"] = api_key_overrides
+
+    try:
+        return generate_multimodal_content(**generation_kwargs)
+    except TypeError:
+        generation_kwargs.pop("api_keys", None)
+        return generate_multimodal_content(**generation_kwargs)
+
+
+def get_provider_availability_snapshot(
+    api_key_overrides: dict[str, str] | None,
+) -> tuple[dict[str, bool], dict[str, bool], dict[str, bool]]:
+    """Load provider availability while remaining compatible with older signatures."""
+    available_providers = _call_provider_availability(
+        get_available_providers,
+        api_key_overrides=api_key_overrides,
     )
+    available_embedding_providers = _call_provider_availability(
+        get_available_embedding_providers,
+        api_key_overrides=api_key_overrides,
+    )
+    available_image_providers = _call_provider_availability(
+        get_available_image_providers,
+        api_key_overrides=api_key_overrides,
+    )
+    return (
+        available_providers,
+        available_embedding_providers,
+        available_image_providers,
+    )
+
+
+def _call_provider_availability(
+    loader: object,
+    *,
+    api_key_overrides: dict[str, str] | None,
+) -> dict[str, bool]:
+    """Call provider availability helpers with graceful fallback for older signatures."""
+    if not api_key_overrides:
+        return loader()
+
+    try:
+        return loader(api_key_overrides=api_key_overrides)
+    except TypeError:
+        return loader()
 
 
 def build_api_key_overrides(
@@ -225,6 +311,142 @@ def render_image_result(result: dict, entity: dict) -> None:
         st.info("No se genero una imagen final. El prompt visual quedo listo para copiar o reutilizar.")
 
 
+def get_generation_run_count() -> int:
+    """Return the total number of persisted runs with backward compatibility."""
+    counter = getattr(history_store, "count_generation_runs", None)
+    if callable(counter):
+        return int(counter())
+
+    return len(list_generation_runs(limit=None))
+
+
+def render_generation_history(limit: int = 10) -> None:
+    """Render a recent history list from the local SQLite store."""
+    with st.expander("Historial reciente", expanded=False):
+        total_runs = get_generation_run_count()
+        if total_runs == 0:
+            st.info("Todavia no hay corridas persistidas.")
+            return
+
+        show_all_history = st.checkbox(
+            "Mostrar todo el historial",
+            value=False,
+            key="history_show_all",
+            help="Activalo para listar todas las corridas guardadas en la base local.",
+        )
+        selected_limit = int(
+            st.number_input(
+                "Cantidad de corridas a mostrar",
+                min_value=1,
+                max_value=max(1, total_runs),
+                value=min(limit, total_runs),
+                step=1,
+                disabled=show_all_history,
+                key="history_limit",
+            )
+        )
+        recent_runs = list_generation_runs(limit=None if show_all_history else selected_limit)
+        st.caption(f"Mostrando {len(recent_runs)} de {total_runs} corridas persistidas.")
+
+        for run in recent_runs:
+            history_label = (
+                f"#{run['id']} | {run['created_at']} | {run.get('entity_name') or 'Sin entidad'} | "
+                f"{run.get('output_type') or 'sin_salida'} | "
+                f"texto {run.get('text_mode') or 'n/a'}:{run.get('effective_text_provider') or 'n/a'} | "
+                f"RAG {run.get('use_rag')} | imagen {run.get('generate_image')}"
+            )
+
+            with st.expander(history_label, expanded=False):
+                details = get_generation_run(run["id"])
+                if details is None:
+                    st.warning("No se pudo cargar el detalle de esta corrida.")
+                    continue
+
+                st.markdown("**Resumen**")
+                st.json(
+                    {
+                        "entity_id": details.get("entity_id"),
+                        "entity_name": details.get("entity_name"),
+                        "entity_type": details.get("entity_type"),
+                        "output_type": details.get("output_type"),
+                        "requested_llm_provider": details.get("requested_llm_provider"),
+                        "effective_text_provider": details.get("effective_text_provider"),
+                        "text_mode": details.get("text_mode"),
+                        "requested_image_provider": details.get("requested_image_provider"),
+                        "effective_image_provider": details.get("effective_image_provider"),
+                        "generate_text": details.get("generate_text"),
+                        "generate_image": details.get("generate_image"),
+                        "use_llm": details.get("use_llm"),
+                        "use_rag": details.get("use_rag"),
+                        "embedding_provider": details.get("embedding_provider"),
+                        "image_mode": details.get("image_mode"),
+                        "visual_style": details.get("visual_style"),
+                        "image_size": details.get("image_size"),
+                    }
+                )
+
+                if details.get("text_error") or details.get("image_error"):
+                    st.markdown("**Errores seguros**")
+                    if details.get("text_error"):
+                        st.warning(f"Texto: {details['text_error']}")
+                    if details.get("image_error"):
+                        st.warning(f"Imagen: {details['image_error']}")
+
+                if details.get("generated_text"):
+                    st.markdown("**Texto generado**")
+                    st.text_area(
+                        f"Texto corrida #{details['id']}",
+                        value=details["generated_text"],
+                        height=220,
+                    )
+
+                if details.get("image_path") or details.get("image_url"):
+                    st.markdown("**Referencia visual**")
+                    st.write(details.get("image_path") or details.get("image_url"))
+
+                with st.expander("Prompt textual", expanded=False):
+                    st.code(details.get("prompt_text") or "", language="text")
+
+                with st.expander("Prompt visual", expanded=False):
+                    st.code(details.get("prompt_image") or "", language="text")
+
+                with st.expander("Contexto base persistido", expanded=False):
+                    st.code(details.get("base_context_text") or "", language="text")
+
+                with st.expander("Contexto recuperado persistido", expanded=False):
+                    if details.get("retrieved_context_text"):
+                        st.code(details["retrieved_context_text"], language="text")
+                    else:
+                        st.info("Esta corrida no persistio contexto recuperado adicional.")
+
+                with st.expander("Opciones de solicitud persistidas", expanded=False):
+                    st.json(details.get("request_options_json") or {})
+
+                with st.expander("Snapshot de entidad persistido", expanded=False):
+                    st.json(details.get("entity_snapshot_json") or {})
+
+                with st.expander("Chunks recuperados persistidos", expanded=False):
+                    retrieved_chunks = details.get("retrieved_chunks_json") or []
+                    if retrieved_chunks:
+                        st.json(retrieved_chunks)
+                    else:
+                        st.info("Esta corrida no guardo chunks recuperados adicionales.")
+
+                with st.expander("Resultado textual completo persistido", expanded=False):
+                    text_result_payload = details.get("text_result_json")
+                    if text_result_payload:
+                        st.json(text_result_payload)
+                    else:
+                        st.info("Esta corrida no persistio un resultado textual completo.")
+
+                with st.expander("Resultado visual completo persistido", expanded=False):
+                    image_result_payload = details.get("image_result_json")
+                    if image_result_payload:
+                        st.json(image_result_payload)
+                    else:
+                        st.info("Esta corrida no persistio un resultado visual completo.")
+
+
 def main() -> None:
     """Render the Streamlit application."""
     st.title("Historical Ecuador Generator")
@@ -238,6 +460,16 @@ def main() -> None:
     except (FileNotFoundError, ValueError) as error:
         st.error(f"No fue posible cargar los datos del proyecto: {error}")
         st.stop()
+
+    store_ready = True
+    try:
+        init_store()
+    except Exception as error:
+        store_ready = False
+        st.warning(
+            "No fue posible inicializar la persistencia local del historial. "
+            f"La generacion seguira funcionando. Detalle seguro: {error}"
+        )
 
     entity_names = get_entity_names(entities)
     if not entity_names:
@@ -334,13 +566,11 @@ def main() -> None:
         st.error("No se pudo encontrar la entidad seleccionada.")
         st.stop()
 
-    available_providers = get_available_providers(api_key_overrides=api_key_overrides)
-    available_embedding_providers = get_available_embedding_providers(
-        api_key_overrides=api_key_overrides
-    )
-    available_image_providers = get_available_image_providers(
-        api_key_overrides=api_key_overrides
-    )
+    (
+        available_providers,
+        available_embedding_providers,
+        available_image_providers,
+    ) = get_provider_availability_snapshot(api_key_overrides)
     rag_status = get_cached_rag_status()
 
     with st.expander("Estado de providers e indice RAG", expanded=False):
@@ -376,6 +606,22 @@ def main() -> None:
         st.json(entity)
 
     if st.button("Generar contenido", type="primary"):
+        request_payload = build_generation_request_payload(
+            output_type=output_type,
+            llm_provider=provider,
+            image_provider=image_provider,
+            embedding_provider=embedding_provider,
+            use_llm=use_llm,
+            use_rag=use_rag,
+            top_k=top_k,
+            generate_text=generate_text,
+            generate_image=generate_image,
+            image_mode=image_mode,
+            visual_style=visual_style,
+            image_size=image_size,
+            debug_mode=debug_mode,
+        )
+
         try:
             result = execute_generation_request(
                 entity=entity,
@@ -398,6 +644,16 @@ def main() -> None:
             st.error(f"No se pudo generar el contenido: {error}")
             st.stop()
 
+        if store_ready:
+            try:
+                saved_run_id = save_generation_run(entity, request_payload, result)
+                st.caption(f"Corrida guardada en historial local como #{saved_run_id}.")
+            except Exception as error:
+                st.warning(
+                    "No fue posible guardar esta corrida en el historial local. "
+                    f"La generacion si se completo. Detalle seguro: {error}"
+                )
+
         st.subheader("Resultado generado")
 
         if result["text_result"]:
@@ -405,6 +661,9 @@ def main() -> None:
 
         if result["image_result"]:
             render_image_result(result["image_result"], entity)
+
+    if store_ready:
+        render_generation_history(limit=10)
 
 
 if __name__ == "__main__":

@@ -164,3 +164,36 @@ def test_generate_visual_content_passes_runtime_api_keys(monkeypatch) -> None:
     )
 
     assert captured["api_key"] == "runtime-openai-key"
+
+
+def test_generate_visual_content_retries_without_api_key_for_legacy_image_client(monkeypatch) -> None:
+    captured: list[dict[str, object]] = []
+
+    monkeypatch.setattr(image_generator, "build_image_prompt", lambda **_: "PROMPT VISUAL")
+
+    def fake_generate_image(**kwargs: object) -> dict[str, object]:
+        captured.append(dict(kwargs))
+        if "api_key" in kwargs:
+            raise TypeError("legacy image client")
+        return {
+            "provider": "fallback",
+            "status": "fallback",
+            "prompt": "PROMPT VISUAL",
+            "image_path": None,
+            "image_url": None,
+            "error": None,
+        }
+
+    monkeypatch.setattr(image_generator, "generate_image", fake_generate_image)
+
+    result = image_generator.generate_visual_content(
+        build_entity(),
+        provider="openai",
+        use_rag=False,
+        api_keys={"openai": "runtime-openai-key"},
+    )
+
+    assert result["provider"] == "fallback"
+    assert len(captured) == 2
+    assert "api_key" in captured[0]
+    assert "api_key" not in captured[1]

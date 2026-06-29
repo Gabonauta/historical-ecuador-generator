@@ -191,3 +191,44 @@ def test_generate_content_passes_runtime_api_keys_to_retrieval_and_llm(monkeypat
 
     assert captured["retrieve"]["api_key"] == "runtime-openai-key"
     assert captured["generate_text"]["api_key"] == "runtime-openai-key"
+
+
+def test_generate_content_retries_without_api_key_for_legacy_clients(monkeypatch) -> None:
+    captured: dict[str, list[dict[str, object]]] = {"retrieve": [], "generate_text": []}
+    monkeypatch.setattr(
+        generator,
+        "load_index",
+        lambda: {"metadata": {"embedding_provider": "openai"}},
+    )
+
+    def fake_retrieve(**kwargs: object) -> list[dict]:
+        captured["retrieve"].append(dict(kwargs))
+        if "api_key" in kwargs:
+            raise TypeError("legacy retrieve")
+        return build_retrieved_chunks()
+
+    def fake_generate_text(**kwargs: object) -> str:
+        captured["generate_text"].append(dict(kwargs))
+        if "api_key" in kwargs:
+            raise TypeError("legacy llm")
+        return "Texto generado por LLM"
+
+    monkeypatch.setattr(generator, "retrieve", fake_retrieve)
+    monkeypatch.setattr(generator, "generate_text", fake_generate_text)
+
+    result = generator.generate_content(
+        build_entity(),
+        "ficha_historica",
+        provider="openai",
+        use_llm=True,
+        use_rag=True,
+        api_keys={"openai": "runtime-openai-key"},
+    )
+
+    assert result["mode"] == "llm"
+    assert len(captured["retrieve"]) == 2
+    assert "api_key" in captured["retrieve"][0]
+    assert "api_key" not in captured["retrieve"][1]
+    assert len(captured["generate_text"]) == 2
+    assert "api_key" in captured["generate_text"][0]
+    assert "api_key" not in captured["generate_text"][1]

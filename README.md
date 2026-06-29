@@ -39,7 +39,7 @@ Actualmente el dataset principal contiene:
 
 - Lenguaje: Python
 - UI: Streamlit
-- Persistencia local: JSON, NPY, TXT
+- Persistencia local: JSON, NPY, TXT, SQLite
 - Recuperacion semantica: embeddings + similitud coseno con NumPy
 - Proveedores LLM opcionales: OpenAI, Gemini, xAI
 - Proveedor de imagen opcional: OpenAI
@@ -60,6 +60,7 @@ historical-ecuador-generator/
 ├── app/
 │   └── streamlit_app.py
 ├── data/
+│   ├── app_state.sqlite3
 │   ├── historical_entities.json
 │   ├── prompt_templates.json
 │   └── rag/
@@ -74,6 +75,7 @@ historical-ecuador-generator/
 │   ├── fallback_generator.py
 │   ├── formatter.py
 │   ├── generator.py
+│   ├── history_store.py
 │   ├── image_client.py
 │   ├── image_generator.py
 │   ├── image_prompt_builder.py
@@ -95,7 +97,7 @@ historical-ecuador-generator/
 ### 1. Capa de datos
 
 - `src/loader.py` carga y valida el dataset local.
-- `data/historical_entities.json` actua como fuente principal.
+- `data/historical_entities.json` actua como fuente principalf
 - `data/prompt_templates.json` define formatos de salida.
 
 ### 2. Capa de contexto
@@ -114,7 +116,13 @@ historical-ecuador-generator/
 - `src/image_client.py` gestiona imagenes y fallback seguro.
 - `src/generator.py` e `src/image_generator.py` coordinan texto, RAG e imagen.
 
-### 4. Capa de interfaz
+### 4. Capa de persistencia local
+
+- `src/history_store.py` guarda el historial de corridas en SQLite local.
+- `data/app_state.sqlite3` almacena cada ejecucion como una corrida unificada.
+- Se persisten prompts, contexto, providers efectivos, errores seguros y referencias a imagenes, pero nunca secretos.
+
+### 5. Capa de interfaz
 
 - `app/streamlit_app.py` expone el flujo completo en una UI web.
 

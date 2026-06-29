@@ -141,3 +141,98 @@ def test_build_api_key_overrides_discards_empty_values() -> None:
     )
 
     assert overrides == {"openai": "openai-key"}
+
+
+def test_build_generation_request_payload_never_includes_api_keys() -> None:
+    payload = streamlit_app.build_generation_request_payload(
+        output_type="ficha_historica",
+        llm_provider="openai",
+        image_provider="openai",
+        embedding_provider="openai",
+        use_llm=True,
+        use_rag=True,
+        top_k=5,
+        generate_text=True,
+        generate_image=True,
+        image_mode="retrato_historico",
+        visual_style="realista",
+        image_size="1024x1024",
+        debug_mode=False,
+    )
+
+    assert "api_keys" not in payload
+    assert "api_key_overrides" not in payload
+
+
+def test_get_provider_availability_snapshot_supports_legacy_signatures(monkeypatch) -> None:
+    monkeypatch.setattr(
+        streamlit_app,
+        "get_available_providers",
+        lambda: {"openai": False, "gemini": False, "xai": False},
+    )
+    monkeypatch.setattr(
+        streamlit_app,
+        "get_available_embedding_providers",
+        lambda: {"openai": False, "gemini": False},
+    )
+    monkeypatch.setattr(
+        streamlit_app,
+        "get_available_image_providers",
+        lambda: {"openai": False, "fallback": True},
+    )
+
+    llm, embeddings, image = streamlit_app.get_provider_availability_snapshot(
+        {"openai": "runtime-openai-key"}
+    )
+
+    assert llm == {"openai": False, "gemini": False, "xai": False}
+    assert embeddings == {"openai": False, "gemini": False}
+    assert image == {"openai": False, "fallback": True}
+
+
+def test_execute_generation_request_omits_api_keys_when_not_provided(monkeypatch) -> None:
+    captured: dict = {}
+
+    def fake_generate_multimodal_content(**kwargs: object) -> dict:
+        captured.update(kwargs)
+        return {
+            "text_result": None,
+            "image_result": None,
+            "entity_id": "eugenio_espejo",
+            "output_type": "ficha_historica",
+            "generate_text": False,
+            "generate_image": False,
+        }
+
+    monkeypatch.setattr(streamlit_app, "generate_multimodal_content", fake_generate_multimodal_content)
+
+    streamlit_app.execute_generation_request(
+        entity=build_entity(),
+        output_type="ficha_historica",
+        llm_provider="openai",
+        image_provider="openai",
+        embedding_provider="openai",
+        use_llm=False,
+        use_rag=True,
+        top_k=4,
+        generate_text=True,
+        generate_image=False,
+        image_mode="retrato_historico",
+        visual_style="realista",
+        image_size="1024x1024",
+        api_key_overrides={},
+        debug_mode=False,
+    )
+
+    assert "api_keys" not in captured
+
+
+def test_get_generation_run_count_supports_legacy_history_store(monkeypatch) -> None:
+    monkeypatch.delattr(streamlit_app.history_store, "count_generation_runs", raising=False)
+    monkeypatch.setattr(
+        streamlit_app,
+        "list_generation_runs",
+        lambda limit=None: [{"id": 3}, {"id": 2}, {"id": 1}],
+    )
+
+    assert streamlit_app.get_generation_run_count() == 3

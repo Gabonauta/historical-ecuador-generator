@@ -8,10 +8,23 @@
     "resumen": "Intelectual, médico, escritor y precursor de las ideas independentistas en la Real Audiencia de Quito.",
     "descripcion_larga": "Eugenio Espejo fue una de las figuras intelectuales más destacadas del territorio que hoy corresponde al Ecuador. Su trabajo como escritor, médico y pensador impulsó ideas reformistas, educativas y críticas hacia el orden colonial. Es considerado un precursor del pensamiento emancipador en Quito.",
     "importancia": "Su producción intelectual ayudó a difundir ideas de cambio político, educativo y social en la etapa previa a la independencia.",
-    "lugares_relacionados": ["Quito", "Centro Histórico de Quito"],
-    "personajes_relacionados": ["Carlos Montúfar", "Manuela Cañizares"],
-    "eventos_relacionados": ["Primer Grito de Independencia"],
-    "etiquetas": ["ilustración", "independencia", "intelectual", "Quito"],
+    "lugares_relacionados": [
+      "Quito",
+      "Centro Histórico de Quito"
+    ],
+    "personajes_relacionados": [
+      "Carlos Montúfar",
+      "Manuela Cañizares"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "ilustración",
+      "independencia",
+      "intelectual",
+      "Quito"
+    ],
     "anio_inicio": 1747,
     "anio_fin": 1795,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -25,10 +38,24 @@
     "resumen": "Prócer quiteño vinculado a los procesos independentistas en Quito y otras regiones de América.",
     "descripcion_larga": "Carlos Montúfar fue un personaje clave en los movimientos emancipadores de comienzos del siglo XIX. Participó activamente en procesos políticos y militares relacionados con la autonomía y la independencia, y es recordado como uno de los protagonistas del ideario libertario quiteño.",
     "importancia": "Representa la articulación entre el pensamiento independentista local y las luchas más amplias por la emancipación en Hispanoamérica.",
-    "lugares_relacionados": ["Quito", "España"],
-    "personajes_relacionados": ["Eugenio Espejo", "Antonio José de Sucre"],
-    "eventos_relacionados": ["Primer Grito de Independencia", "Batalla de Pichincha"],
-    "etiquetas": ["prócer", "independencia", "Quito", "libertad"],
+    "lugares_relacionados": [
+      "Quito",
+      "España"
+    ],
+    "personajes_relacionados": [
+      "Eugenio Espejo",
+      "Antonio José de Sucre"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia",
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "prócer",
+      "independencia",
+      "Quito",
+      "libertad"
+    ],
     "anio_inicio": 1780,
     "anio_fin": 1816,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -42,10 +69,23 @@
     "resumen": "Figura política y patriota vinculada a los procesos independentistas sudamericanos.",
     "descripcion_larga": "Manuela Sáenz fue una protagonista destacada de la independencia sudamericana. Participó en actividades políticas y de apoyo a la causa libertadora, y su figura ha sido reivindicada como símbolo de valentía, compromiso político y protagonismo femenino en la historia regional.",
     "importancia": "Su papel visibiliza la participación de las mujeres en los procesos históricos de emancipación.",
-    "lugares_relacionados": ["Quito", "Lima"],
-    "personajes_relacionados": ["Simón Bolívar", "Antonio José de Sucre"],
-    "eventos_relacionados": ["Batalla de Pichincha"],
-    "etiquetas": ["independencia", "mujeres", "patriota", "Quito"],
+    "lugares_relacionados": [
+      "Quito",
+      "Lima"
+    ],
+    "personajes_relacionados": [
+      "Simón Bolívar",
+      "Antonio José de Sucre"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "independencia",
+      "mujeres",
+      "patriota",
+      "Quito"
+    ],
     "anio_inicio": 1797,
     "anio_fin": 1856,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -59,10 +99,23 @@
     "resumen": "Líder político ecuatoriano y principal referente de la Revolución Liberal.",
     "descripcion_larga": "Eloy Alfaro fue uno de los dirigentes más influyentes de la historia republicana del Ecuador. Lideró la Revolución Liberal e impulsó reformas políticas, educativas y de modernización del Estado, entre ellas la separación entre Iglesia y Estado y el impulso al ferrocarril.",
     "importancia": "Su liderazgo marcó un punto de inflexión en la organización política y modernización institucional del Ecuador.",
-    "lugares_relacionados": ["Montecristi", "Quito", "Guayaquil"],
-    "personajes_relacionados": ["José María Urbina"],
-    "eventos_relacionados": ["Revolución Liberal"],
-    "etiquetas": ["liberalismo", "república", "reformas", "ferrocarril"],
+    "lugares_relacionados": [
+      "Montecristi",
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "José María Urbina"
+    ],
+    "eventos_relacionados": [
+      "Revolución Liberal"
+    ],
+    "etiquetas": [
+      "liberalismo",
+      "república",
+      "reformas",
+      "ferrocarril"
+    ],
     "anio_inicio": 1842,
     "anio_fin": 1912,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -76,10 +129,23 @@
     "resumen": "Militar y estadista vinculado de forma decisiva a la independencia del territorio ecuatoriano.",
     "descripcion_larga": "Antonio José de Sucre fue uno de los líderes militares más importantes de los procesos de independencia en Sudamérica. Su participación en la Batalla de Pichincha fue decisiva para consolidar la liberación del territorio de Quito del dominio español.",
     "importancia": "Es una figura central para comprender la independencia del actual Ecuador.",
-    "lugares_relacionados": ["Quito", "Volcán Pichincha"],
-    "personajes_relacionados": ["Simón Bolívar", "Manuela Sáenz"],
-    "eventos_relacionados": ["Batalla de Pichincha"],
-    "etiquetas": ["independencia", "militar", "Pichincha", "libertador"],
+    "lugares_relacionados": [
+      "Quito",
+      "Volcán Pichincha"
+    ],
+    "personajes_relacionados": [
+      "Simón Bolívar",
+      "Manuela Sáenz"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "independencia",
+      "militar",
+      "Pichincha",
+      "libertador"
+    ],
     "anio_inicio": 1795,
     "anio_fin": 1830,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -93,10 +159,23 @@
     "resumen": "Espacio emblemático del Centro Histórico de Quito y escenario de múltiples acontecimientos políticos y sociales.",
     "descripcion_larga": "La Plaza Grande, también conocida como Plaza de la Independencia, ha sido uno de los espacios más representativos de Quito desde la época colonial. A su alrededor se ubican edificios clave del poder político, religioso e institucional, lo que la convirtió en escenario de ceremonias, debates y hechos históricos.",
     "importancia": "Concentra una gran carga simbólica e histórica dentro de la memoria urbana y política de la capital ecuatoriana.",
-    "lugares_relacionados": ["Centro Histórico de Quito", "Palacio de Carondelet"],
-    "personajes_relacionados": ["Eugenio Espejo", "Carlos Montúfar"],
-    "eventos_relacionados": ["Primer Grito de Independencia"],
-    "etiquetas": ["Quito", "plaza", "memoria", "patrimonio"],
+    "lugares_relacionados": [
+      "Centro Histórico de Quito",
+      "Palacio de Carondelet"
+    ],
+    "personajes_relacionados": [
+      "Eugenio Espejo",
+      "Carlos Montúfar"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "Quito",
+      "plaza",
+      "memoria",
+      "patrimonio"
+    ],
     "anio_inicio": 1534,
     "anio_fin": 0,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -110,10 +189,18 @@
     "resumen": "Templo emblemático del Centro Histórico de Quito, reconocido por su valor artístico y patrimonial.",
     "descripcion_larga": "La Iglesia de la Compañía de Jesús es uno de los monumentos religiosos más importantes del Ecuador. Destaca por su arquitectura barroca y por la riqueza ornamental de su interior, convirtiéndose en una referencia del arte colonial quiteño y del patrimonio histórico nacional.",
     "importancia": "Es una pieza fundamental para comprender el legado artístico, religioso y urbano de la época colonial en Quito.",
-    "lugares_relacionados": ["Centro Histórico de Quito", "Plaza Grande"],
+    "lugares_relacionados": [
+      "Centro Histórico de Quito",
+      "Plaza Grande"
+    ],
     "personajes_relacionados": [],
     "eventos_relacionados": [],
-    "etiquetas": ["barroco", "iglesia", "patrimonio", "Quito"],
+    "etiquetas": [
+      "barroco",
+      "iglesia",
+      "patrimonio",
+      "Quito"
+    ],
     "anio_inicio": 1605,
     "anio_fin": 1765,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -127,10 +214,23 @@
     "resumen": "Conjunto urbano patrimonial de gran relevancia histórica, arquitectónica y cultural.",
     "descripcion_larga": "El Centro Histórico de Quito conserva una importante concentración de edificios religiosos, civiles y espacios públicos de origen colonial y republicano. Su trazado urbano y riqueza patrimonial lo convierten en uno de los referentes históricos y turísticos más importantes del país.",
     "importancia": "Es un espacio clave para la memoria histórica, la identidad urbana y la proyección turística de Quito y del Ecuador.",
-    "lugares_relacionados": ["Plaza Grande", "Iglesia de la Compañía de Jesús"],
-    "personajes_relacionados": ["Eugenio Espejo", "Carlos Montúfar"],
-    "eventos_relacionados": ["Primer Grito de Independencia"],
-    "etiquetas": ["patrimonio", "Quito", "arquitectura", "turismo"],
+    "lugares_relacionados": [
+      "Plaza Grande",
+      "Iglesia de la Compañía de Jesús"
+    ],
+    "personajes_relacionados": [
+      "Eugenio Espejo",
+      "Carlos Montúfar"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "patrimonio",
+      "Quito",
+      "arquitectura",
+      "turismo"
+    ],
     "anio_inicio": 1534,
     "anio_fin": 0,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -144,10 +244,24 @@
     "resumen": "Proceso político iniciado en 1809 que marcó un antecedente clave en la independencia del territorio quiteño.",
     "descripcion_larga": "El Primer Grito de Independencia de 1809 es considerado uno de los hitos más importantes de la historia política de Quito y del actual Ecuador. Representó un cuestionamiento al orden colonial y abrió un ciclo de transformaciones políticas que desembocarían posteriormente en la independencia.",
     "importancia": "Es un referente fundamental de la memoria política ecuatoriana y del proceso emancipador latinoamericano.",
-    "lugares_relacionados": ["Quito", "Plaza Grande"],
-    "personajes_relacionados": ["Carlos Montúfar", "Manuela Cañizares", "Eugenio Espejo"],
-    "eventos_relacionados": ["Batalla de Pichincha"],
-    "etiquetas": ["1809", "independencia", "Quito", "política"],
+    "lugares_relacionados": [
+      "Quito",
+      "Plaza Grande"
+    ],
+    "personajes_relacionados": [
+      "Carlos Montúfar",
+      "Manuela Cañizares",
+      "Eugenio Espejo"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "1809",
+      "independencia",
+      "Quito",
+      "política"
+    ],
     "anio_inicio": 1809,
     "anio_fin": 1809,
     "fuente_base": "Registro histórico base curado para el proyecto."
@@ -161,12 +275,2409 @@
     "resumen": "Enfrentamiento militar decisivo para la independencia del territorio de Quito en 1822.",
     "descripcion_larga": "La Batalla de Pichincha, librada el 24 de mayo de 1822, fue un hecho determinante para la independencia de Quito. La victoria de las fuerzas patriotas consolidó la liberación del territorio y la incorporación del antiguo distrito a los procesos emancipadores sudamericanos.",
     "importancia": "Es uno de los acontecimientos militares y simbólicos más importantes de la historia nacional ecuatoriana.",
-    "lugares_relacionados": ["Quito", "Volcán Pichincha"],
-    "personajes_relacionados": ["Antonio José de Sucre", "Manuela Sáenz"],
-    "eventos_relacionados": ["Primer Grito de Independencia"],
-    "etiquetas": ["1822", "batalla", "independencia", "Quito"],
+    "lugares_relacionados": [
+      "Quito",
+      "Volcán Pichincha"
+    ],
+    "personajes_relacionados": [
+      "Antonio José de Sucre",
+      "Manuela Sáenz"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "1822",
+      "batalla",
+      "independencia",
+      "Quito"
+    ],
     "anio_inicio": 1822,
     "anio_fin": 1822,
     "fuente_base": "Registro histórico base curado para el proyecto."
+  },
+  {
+    "id": "atahualpa",
+    "nombre": "Atahualpa",
+    "tipo": "personaje",
+    "epoca": "Periodo inca",
+    "ubicacion": "Quito y Andes del norte",
+    "resumen": "Último soberano inca antes de la conquista española.",
+    "descripcion_larga": "Último soberano inca antes de la conquista española. Su figura es clave para entender la guerra civil inca y el colapso del poder imperial.",
+    "importancia": "Su figura es clave para entender la guerra civil inca y el colapso del poder imperial.",
+    "lugares_relacionados": [
+      "Quito",
+      "Qhapaq Ñan"
+    ],
+    "personajes_relacionados": [
+      "Huayna Cápac",
+      "Rumiñahui"
+    ],
+    "eventos_relacionados": [
+      "Guerra Civil Inca"
+    ],
+    "etiquetas": [
+      "inca",
+      "Quito",
+      "conquista"
+    ],
+    "anio_inicio": 1502,
+    "anio_fin": 1533,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "ruminahui",
+    "nombre": "Rumiñahui",
+    "tipo": "personaje",
+    "epoca": "Periodo inca y conquista",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "General indígena asociado a la resistencia frente a los conquistadores.",
+    "descripcion_larga": "General indígena asociado a la resistencia frente a los conquistadores. Simboliza la defensa del territorio andino y la memoria de la resistencia indígena en Quito.",
+    "importancia": "Simboliza la defensa del territorio andino y la memoria de la resistencia indígena en Quito.",
+    "lugares_relacionados": [
+      "Quito",
+      "Volcán Pichincha"
+    ],
+    "personajes_relacionados": [
+      "Atahualpa",
+      "Sebastián de Benalcázar"
+    ],
+    "eventos_relacionados": [
+      "Fundación Española de Quito"
+    ],
+    "etiquetas": [
+      "resistencia",
+      "indígena",
+      "Quito"
+    ],
+    "anio_inicio": 1490,
+    "anio_fin": 1535,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "huayna_capac",
+    "nombre": "Huayna Cápac",
+    "tipo": "personaje",
+    "epoca": "Periodo inca",
+    "ubicacion": "Quito y Tomebamba",
+    "resumen": "Inca que consolidó la expansión imperial hacia el norte andino.",
+    "descripcion_larga": "Inca que consolidó la expansión imperial hacia el norte andino. Permite comprender la integración del actual territorio ecuatoriano dentro del mundo inca.",
+    "importancia": "Permite comprender la integración del actual territorio ecuatoriano dentro del mundo inca.",
+    "lugares_relacionados": [
+      "Quito",
+      "Pumapungo",
+      "Qhapaq Ñan"
+    ],
+    "personajes_relacionados": [
+      "Atahualpa"
+    ],
+    "eventos_relacionados": [
+      "Guerra Civil Inca"
+    ],
+    "etiquetas": [
+      "inca",
+      "expansión",
+      "Quito"
+    ],
+    "anio_inicio": 1464,
+    "anio_fin": 1527,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "sebastian_de_benalcazar",
+    "nombre": "Sebastián de Benalcázar",
+    "tipo": "personaje",
+    "epoca": "Siglo XVI",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Conquistador español asociado a la ocupación del territorio de Quito.",
+    "descripcion_larga": "Conquistador español asociado a la ocupación del territorio de Quito. Es una figura clave para estudiar el paso del orden andino al orden colonial.",
+    "importancia": "Es una figura clave para estudiar el paso del orden andino al orden colonial.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Rumiñahui"
+    ],
+    "eventos_relacionados": [
+      "Fundación Española de Quito",
+      "Fundación de Guayaquil"
+    ],
+    "etiquetas": [
+      "conquista",
+      "colonial",
+      "fundación"
+    ],
+    "anio_inicio": 1480,
+    "anio_fin": 1551,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "juan_pio_montufar",
+    "nombre": "Juan Pío Montúfar",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Noble quiteño vinculado a la Junta de 1809.",
+    "descripcion_larga": "Noble quiteño vinculado a la Junta de 1809. Ayuda a comprender la dimensión política y social del autonomismo en Quito.",
+    "importancia": "Ayuda a comprender la dimensión política y social del autonomismo en Quito.",
+    "lugares_relacionados": [
+      "Quito",
+      "Plaza Grande"
+    ],
+    "personajes_relacionados": [
+      "Carlos Montúfar",
+      "Manuela Cañizares"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "Quito",
+      "junta",
+      "independencia"
+    ],
+    "anio_inicio": 1758,
+    "anio_fin": 1819,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "manuela_canizares",
+    "nombre": "Manuela Cañizares",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Patriota quiteña ligada a las reuniones previas a 1809.",
+    "descripcion_larga": "Patriota quiteña ligada a las reuniones previas a 1809. Representa la participación de las mujeres en la vida política temprana del Ecuador.",
+    "importancia": "Representa la participación de las mujeres en la vida política temprana del Ecuador.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Juan Pío Montúfar",
+      "Carlos Montúfar"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "mujeres",
+      "patriota",
+      "Quito"
+    ],
+    "anio_inicio": 1769,
+    "anio_fin": 1814,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "simon_bolivar",
+    "nombre": "Simón Bolívar",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito y Gran Colombia",
+    "resumen": "Líder independentista con fuerte incidencia en la formación del Ecuador republicano.",
+    "descripcion_larga": "Líder independentista con fuerte incidencia en la formación del Ecuador republicano. Es indispensable para contextualizar la emancipación y la temprana organización republicana.",
+    "importancia": "Es indispensable para contextualizar la emancipación y la temprana organización republicana.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Antonio José de Sucre",
+      "Manuela Sáenz"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha",
+      "Separación de la Gran Colombia"
+    ],
+    "etiquetas": [
+      "libertador",
+      "Gran Colombia",
+      "independencia"
+    ],
+    "anio_inicio": 1783,
+    "anio_fin": 1830,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "abdon_calderon",
+    "nombre": "Abdón Calderón",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Cuenca y Quito, Ecuador",
+    "resumen": "Joven militar patriota recordado por la campaña de 1822.",
+    "descripcion_larga": "Joven militar patriota recordado por la campaña de 1822. Resume el valor simbólico de la participación juvenil en la independencia.",
+    "importancia": "Resume el valor simbólico de la participación juvenil en la independencia.",
+    "lugares_relacionados": [
+      "Cuenca",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Antonio José de Sucre"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "héroe",
+      "independencia",
+      "militar"
+    ],
+    "anio_inicio": 1804,
+    "anio_fin": 1822,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "jose_joaquin_de_olmedo",
+    "nombre": "José Joaquín de Olmedo",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Poeta y político ligado a la independencia de Guayaquil.",
+    "descripcion_larga": "Poeta y político ligado a la independencia de Guayaquil. Ayuda a entender la relación entre cultura política, escritura y república en la Costa.",
+    "importancia": "Ayuda a entender la relación entre cultura política, escritura y república en la Costa.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Puerto de Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Vicente Rocafuerte"
+    ],
+    "eventos_relacionados": [
+      "Independencia de Guayaquil"
+    ],
+    "etiquetas": [
+      "Guayaquil",
+      "política",
+      "poesía"
+    ],
+    "anio_inicio": 1780,
+    "anio_fin": 1847,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "juan_jose_flores",
+    "nombre": "Juan José Flores",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Primer presidente del Ecuador tras la separación de la Gran Colombia.",
+    "descripcion_larga": "Primer presidente del Ecuador tras la separación de la Gran Colombia. Es una figura clave para estudiar el nacimiento institucional del Ecuador.",
+    "importancia": "Es una figura clave para estudiar el nacimiento institucional del Ecuador.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Vicente Rocafuerte"
+    ],
+    "eventos_relacionados": [
+      "Separación de la Gran Colombia"
+    ],
+    "etiquetas": [
+      "república",
+      "presidencia",
+      "Estado"
+    ],
+    "anio_inicio": 1800,
+    "anio_fin": 1864,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "vicente_rocafuerte",
+    "nombre": "Vicente Rocafuerte",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Político y presidente asociado a reformas educativas y administrativas.",
+    "descripcion_larga": "Político y presidente asociado a reformas educativas y administrativas. Su trayectoria muestra los esfuerzos por fortalecer la república en sus primeros años.",
+    "importancia": "Su trayectoria muestra los esfuerzos por fortalecer la república en sus primeros años.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Juan José Flores",
+      "José Joaquín de Olmedo"
+    ],
+    "eventos_relacionados": [
+      "Separación de la Gran Colombia"
+    ],
+    "etiquetas": [
+      "república",
+      "educación",
+      "presidencia"
+    ],
+    "anio_inicio": 1783,
+    "anio_fin": 1847,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "gabriel_garcia_moreno",
+    "nombre": "Gabriel García Moreno",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Presidente conservador de gran influencia en el siglo XIX.",
+    "descripcion_larga": "Presidente conservador de gran influencia en el siglo XIX. Es clave para estudiar la consolidación del Estado y las tensiones entre conservadurismo y liberalismo.",
+    "importancia": "Es clave para estudiar la consolidación del Estado y las tensiones entre conservadurismo y liberalismo.",
+    "lugares_relacionados": [
+      "Quito",
+      "Palacio de Carondelet"
+    ],
+    "personajes_relacionados": [
+      "Juan Montalvo"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "conservadurismo",
+      "Estado",
+      "Quito"
+    ],
+    "anio_inicio": 1821,
+    "anio_fin": 1875,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "jose_maria_urbina",
+    "nombre": "José María Urbina",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Militar y presidente asociado a reformas de mediados del siglo XIX.",
+    "descripcion_larga": "Militar y presidente asociado a reformas de mediados del siglo XIX. Permite entender la evolución política previa a la Revolución Liberal.",
+    "importancia": "Permite entender la evolución política previa a la Revolución Liberal.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Eloy Alfaro"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "república",
+      "militar",
+      "reformas"
+    ],
+    "anio_inicio": 1808,
+    "anio_fin": 1891,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "juan_montalvo",
+    "nombre": "Juan Montalvo",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Ambato, Ecuador",
+    "resumen": "Ensayista reconocido por su crítica al autoritarismo.",
+    "descripcion_larga": "Ensayista reconocido por su crítica al autoritarismo. Su obra es fundamental para estudiar la crítica política y la cultura intelectual del país.",
+    "importancia": "Su obra es fundamental para estudiar la crítica política y la cultura intelectual del país.",
+    "lugares_relacionados": [
+      "Ambato",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Gabriel García Moreno",
+      "Eloy Alfaro"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "ensayo",
+      "liberalismo",
+      "crítica"
+    ],
+    "anio_inicio": 1832,
+    "anio_fin": 1889,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "pedro_vicente_maldonado",
+    "nombre": "Pedro Vicente Maldonado",
+    "tipo": "personaje",
+    "epoca": "Siglo XVIII",
+    "ubicacion": "Riobamba y Quito, Ecuador",
+    "resumen": "Científico y cartógrafo criollo asociado al conocimiento del territorio.",
+    "descripcion_larga": "Científico y cartógrafo criollo asociado al conocimiento del territorio. Es importante para comprender la relación entre ciencia, territorio y administración en la época colonial.",
+    "importancia": "Es importante para comprender la relación entre ciencia, territorio y administración en la época colonial.",
+    "lugares_relacionados": [
+      "Quito",
+      "Riobamba"
+    ],
+    "personajes_relacionados": [
+      "La Condamine"
+    ],
+    "eventos_relacionados": [
+      "Misión Geodésica Francesa"
+    ],
+    "etiquetas": [
+      "ciencia",
+      "cartografía",
+      "territorio"
+    ],
+    "anio_inicio": 1704,
+    "anio_fin": 1748,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "manuela_espejo",
+    "nombre": "Manuela Espejo",
+    "tipo": "personaje",
+    "epoca": "Siglos XVIII-XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Intelectual quiteña vinculada al entorno ilustrado de fines de la colonia.",
+    "descripcion_larga": "Intelectual quiteña vinculada al entorno ilustrado de fines de la colonia. Aporta una perspectiva sobre la presencia femenina en el ambiente reformista de Quito.",
+    "importancia": "Aporta una perspectiva sobre la presencia femenina en el ambiente reformista de Quito.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Eugenio Espejo"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "mujeres",
+      "Ilustración",
+      "Quito"
+    ],
+    "anio_inicio": 1753,
+    "anio_fin": 1829,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "mariana_de_jesus",
+    "nombre": "Mariana de Jesús",
+    "tipo": "personaje",
+    "epoca": "Periodo colonial",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Figura religiosa de gran arraigo en la memoria quiteña.",
+    "descripcion_larga": "Figura religiosa de gran arraigo en la memoria quiteña. Es relevante para estudiar la religiosidad colonial y la memoria urbana de la capital.",
+    "importancia": "Es relevante para estudiar la religiosidad colonial y la memoria urbana de la capital.",
+    "lugares_relacionados": [
+      "Quito",
+      "Catedral Metropolitana de Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "religión",
+      "colonial",
+      "Quito"
+    ],
+    "anio_inicio": 1618,
+    "anio_fin": 1645,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "juan_de_velasco",
+    "nombre": "Juan de Velasco",
+    "tipo": "personaje",
+    "epoca": "Siglo XVIII",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Jesuita e historiador conocido por sus escritos sobre el pasado del territorio.",
+    "descripcion_larga": "Jesuita e historiador conocido por sus escritos sobre el pasado del territorio. Su obra influyó en imaginarios históricos e identitarios posteriores.",
+    "importancia": "Su obra influyó en imaginarios históricos e identitarios posteriores.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "historiografía",
+      "jesuita",
+      "memoria"
+    ],
+    "anio_inicio": 1727,
+    "anio_fin": 1792,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "luis_vargas_torres",
+    "nombre": "Luis Vargas Torres",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Esmeraldas, Ecuador",
+    "resumen": "Militar y revolucionario liberal vinculado al radicalismo de fines del siglo XIX.",
+    "descripcion_larga": "Militar y revolucionario liberal vinculado al radicalismo de fines del siglo XIX. Es clave para entender los antecedentes humanos y políticos de la Revolución Liberal.",
+    "importancia": "Es clave para entender los antecedentes humanos y políticos de la Revolución Liberal.",
+    "lugares_relacionados": [
+      "Esmeraldas",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Eloy Alfaro"
+    ],
+    "eventos_relacionados": [
+      "Revolución Liberal"
+    ],
+    "etiquetas": [
+      "liberalismo",
+      "radicalismo",
+      "Esmeraldas"
+    ],
+    "anio_inicio": 1855,
+    "anio_fin": 1887,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "dolores_cacuango",
+    "nombre": "Dolores Cacuango",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Cayambe, Ecuador",
+    "resumen": "Lideresa indígena y campesina asociada a luchas por tierra y educación.",
+    "descripcion_larga": "Lideresa indígena y campesina asociada a luchas por tierra y educación. Es esencial para comprender la historia de la organización indígena y campesina del Ecuador.",
+    "importancia": "Es esencial para comprender la historia de la organización indígena y campesina del Ecuador.",
+    "lugares_relacionados": [
+      "Cayambe",
+      "Otavalo"
+    ],
+    "personajes_relacionados": [
+      "Tránsito Amaguaña"
+    ],
+    "eventos_relacionados": [
+      "Levantamiento Indígena de 1990"
+    ],
+    "etiquetas": [
+      "indígena",
+      "campesinado",
+      "educación"
+    ],
+    "anio_inicio": 1881,
+    "anio_fin": 1971,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "transito_amaguana",
+    "nombre": "Tránsito Amaguaña",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Cayambe, Ecuador",
+    "resumen": "Dirigenta indígena vinculada a la organización comunitaria y a las luchas agrarias.",
+    "descripcion_larga": "Dirigenta indígena vinculada a la organización comunitaria y a las luchas agrarias. Su vida permite seguir la continuidad de las luchas indígenas del siglo XX.",
+    "importancia": "Su vida permite seguir la continuidad de las luchas indígenas del siglo XX.",
+    "lugares_relacionados": [
+      "Cayambe",
+      "Otavalo"
+    ],
+    "personajes_relacionados": [
+      "Dolores Cacuango"
+    ],
+    "eventos_relacionados": [
+      "Levantamiento Indígena de 1990"
+    ],
+    "etiquetas": [
+      "indígena",
+      "campesinado",
+      "organización"
+    ],
+    "anio_inicio": 1909,
+    "anio_fin": 2009,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "fernando_daquilema",
+    "nombre": "Fernando Daquilema",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Chimborazo, Ecuador",
+    "resumen": "Líder indígena recordado por la rebelión de 1871.",
+    "descripcion_larga": "Líder indígena recordado por la rebelión de 1871. Se convirtió en símbolo de resistencia y dignidad comunitaria.",
+    "importancia": "Se convirtió en símbolo de resistencia y dignidad comunitaria.",
+    "lugares_relacionados": [
+      "Chimborazo",
+      "Riobamba"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Rebelión de Daquilema"
+    ],
+    "etiquetas": [
+      "indígena",
+      "rebelión",
+      "resistencia"
+    ],
+    "anio_inicio": 1848,
+    "anio_fin": 1872,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "matilde_hidalgo",
+    "nombre": "Matilde Hidalgo",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Loja, Ecuador",
+    "resumen": "Médica y pionera de los derechos políticos de las mujeres.",
+    "descripcion_larga": "Médica y pionera de los derechos políticos de las mujeres. Es un referente indispensable de la historia de los derechos de las mujeres en el país.",
+    "importancia": "Es un referente indispensable de la historia de los derechos de las mujeres en el país.",
+    "lugares_relacionados": [
+      "Loja",
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "mujeres",
+      "voto",
+      "medicina"
+    ],
+    "anio_inicio": 1889,
+    "anio_fin": 1974,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "benjamin_carrion",
+    "nombre": "Benjamín Carrión",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Loja y Quito, Ecuador",
+    "resumen": "Ensayista y promotor cultural ligado a la institucionalización de la cultura.",
+    "descripcion_larga": "Ensayista y promotor cultural ligado a la institucionalización de la cultura. Es clave para entender la construcción de una política cultural moderna en el Ecuador.",
+    "importancia": "Es clave para entender la construcción de una política cultural moderna en el Ecuador.",
+    "lugares_relacionados": [
+      "Loja",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Jorge Icaza",
+      "Oswaldo Guayasamín"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "cultura",
+      "ensayo",
+      "identidad"
+    ],
+    "anio_inicio": 1897,
+    "anio_fin": 1979,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "jose_maria_velasco_ibarra",
+    "nombre": "José María Velasco Ibarra",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Político que marcó varias etapas del siglo XX ecuatoriano.",
+    "descripcion_larga": "Político que marcó varias etapas del siglo XX ecuatoriano. Es central para estudiar la cultura política y la inestabilidad del siglo XX.",
+    "importancia": "Es central para estudiar la cultura política y la inestabilidad del siglo XX.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Isidro Ayora",
+      "Jaime Roldós Aguilera"
+    ],
+    "eventos_relacionados": [
+      "Retorno a la Democracia de 1979"
+    ],
+    "etiquetas": [
+      "presidencia",
+      "siglo XX",
+      "política"
+    ],
+    "anio_inicio": 1893,
+    "anio_fin": 1979,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "isidro_ayora",
+    "nombre": "Isidro Ayora",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Loja y Quito, Ecuador",
+    "resumen": "Médico y presidente vinculado al ciclo posterior a la Revolución Juliana.",
+    "descripcion_larga": "Médico y presidente vinculado al ciclo posterior a la Revolución Juliana. Permite comprender la transición del Ecuador hacia nuevas formas de administración pública.",
+    "importancia": "Permite comprender la transición del Ecuador hacia nuevas formas de administración pública.",
+    "lugares_relacionados": [
+      "Quito",
+      "Loja"
+    ],
+    "personajes_relacionados": [
+      "Alberto Enríquez Gallo"
+    ],
+    "eventos_relacionados": [
+      "Revolución Juliana",
+      "Constitución de 1929"
+    ],
+    "etiquetas": [
+      "reformas",
+      "Estado",
+      "economía"
+    ],
+    "anio_inicio": 1879,
+    "anio_fin": 1978,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "nela_martinez",
+    "nombre": "Nela Martínez",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Cañar y Quito, Ecuador",
+    "resumen": "Escritora y activista vinculada a luchas sociales y de derechos de las mujeres.",
+    "descripcion_larga": "Escritora y activista vinculada a luchas sociales y de derechos de las mujeres. Amplía la mirada sobre el papel de las mujeres en la política moderna del Ecuador.",
+    "importancia": "Amplía la mirada sobre el papel de las mujeres en la política moderna del Ecuador.",
+    "lugares_relacionados": [
+      "Quito",
+      "Cañar"
+    ],
+    "personajes_relacionados": [
+      "Dolores Cacuango"
+    ],
+    "eventos_relacionados": [
+      "Revolución Gloriosa de 1944"
+    ],
+    "etiquetas": [
+      "mujeres",
+      "izquierda",
+      "activismo"
+    ],
+    "anio_inicio": 1912,
+    "anio_fin": 2004,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "alberto_enriquez_gallo",
+    "nombre": "Alberto Enríquez Gallo",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Militar y jefe de Estado asociado a reformas laborales y administrativas.",
+    "descripcion_larga": "Militar y jefe de Estado asociado a reformas laborales y administrativas. Es útil para entender la complejidad del reformismo estatal en el Ecuador del siglo XX.",
+    "importancia": "Es útil para entender la complejidad del reformismo estatal en el Ecuador del siglo XX.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Isidro Ayora"
+    ],
+    "eventos_relacionados": [
+      "Revolución Juliana"
+    ],
+    "etiquetas": [
+      "militar",
+      "reformas",
+      "Estado"
+    ],
+    "anio_inicio": 1895,
+    "anio_fin": 1962,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "jaime_roldos_aguilera",
+    "nombre": "Jaime Roldós Aguilera",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Presidente asociado al retorno a la democracia y a una agenda de derechos.",
+    "descripcion_larga": "Presidente asociado al retorno a la democracia y a una agenda de derechos. Es una referencia central en la memoria política del retorno democrático ecuatoriano.",
+    "importancia": "Es una referencia central en la memoria política del retorno democrático ecuatoriano.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Retorno a la Democracia de 1979"
+    ],
+    "etiquetas": [
+      "democracia",
+      "presidencia",
+      "derechos"
+    ],
+    "anio_inicio": 1940,
+    "anio_fin": 1981,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "oswaldo_guayasamin",
+    "nombre": "Oswaldo Guayasamín",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Pintor y muralista reconocido por su obra de fuerte contenido humano y social.",
+    "descripcion_larga": "Pintor y muralista reconocido por su obra de fuerte contenido humano y social. Es clave para comprender la dimensión visual y ética de la cultura ecuatoriana contemporánea.",
+    "importancia": "Es clave para comprender la dimensión visual y ética de la cultura ecuatoriana contemporánea.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Benjamín Carrión"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "arte",
+      "pintura",
+      "memoria"
+    ],
+    "anio_inicio": 1919,
+    "anio_fin": 1999,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "jorge_icaza",
+    "nombre": "Jorge Icaza",
+    "tipo": "personaje",
+    "epoca": "Siglo XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Escritor conocido por su retrato crítico de las desigualdades sociales y étnicas.",
+    "descripcion_larga": "Escritor conocido por su retrato crítico de las desigualdades sociales y étnicas. Su obra es fundamental para pensar la representación del país en la narrativa social.",
+    "importancia": "Su obra es fundamental para pensar la representación del país en la narrativa social.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Benjamín Carrión"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "literatura",
+      "indigenismo",
+      "novela"
+    ],
+    "anio_inicio": 1906,
+    "anio_fin": 1978,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "juan_leon_mera",
+    "nombre": "Juan León Mera",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Ambato, Ecuador",
+    "resumen": "Escritor y político vinculado a la vida literaria y simbólica del siglo XIX.",
+    "descripcion_larga": "Escritor y político vinculado a la vida literaria y simbólica del siglo XIX. Ayuda a entender la relación entre literatura, nación y política en el siglo XIX ecuatoriano.",
+    "importancia": "Ayuda a entender la relación entre literatura, nación y política en el siglo XIX ecuatoriano.",
+    "lugares_relacionados": [
+      "Ambato",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Juan Montalvo"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "literatura",
+      "nación",
+      "cultura"
+    ],
+    "anio_inicio": 1832,
+    "anio_fin": 1894,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "la_condamine",
+    "nombre": "La Condamine",
+    "tipo": "personaje",
+    "epoca": "Siglo XVIII",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Científico francés asociado a la expedición geodésica en la región de Quito.",
+    "descripcion_larga": "Científico francés asociado a la expedición geodésica en la región de Quito. Su presencia muestra el peso de Quito en la historia de la ciencia moderna.",
+    "importancia": "Su presencia muestra el peso de Quito en la historia de la ciencia moderna.",
+    "lugares_relacionados": [
+      "Quito",
+      "Mitad del Mundo"
+    ],
+    "personajes_relacionados": [
+      "Pedro Vicente Maldonado"
+    ],
+    "eventos_relacionados": [
+      "Misión Geodésica Francesa"
+    ],
+    "etiquetas": [
+      "ciencia",
+      "Ilustración",
+      "geodesia"
+    ],
+    "anio_inicio": 1701,
+    "anio_fin": 1774,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "alexander_von_humboldt",
+    "nombre": "Alexander von Humboldt",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito y Andes ecuatorianos",
+    "resumen": "Naturalista cuya visita dejó observaciones influyentes sobre geografía y naturaleza andina.",
+    "descripcion_larga": "Naturalista cuya visita dejó observaciones influyentes sobre geografía y naturaleza andina. Es relevante para comprender la proyección científica global del paisaje ecuatoriano.",
+    "importancia": "Es relevante para comprender la proyección científica global del paisaje ecuatoriano.",
+    "lugares_relacionados": [
+      "Quito",
+      "Chimborazo",
+      "Cotopaxi"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "ciencia",
+      "viajes",
+      "Andes"
+    ],
+    "anio_inicio": 1769,
+    "anio_fin": 1859,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "charles_darwin",
+    "nombre": "Charles Darwin",
+    "tipo": "personaje",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Galápagos, Ecuador",
+    "resumen": "Naturalista cuya visita a Galápagos tuvo gran importancia en la historia de la ciencia.",
+    "descripcion_larga": "Naturalista cuya visita a Galápagos tuvo gran importancia en la historia de la ciencia. Ayuda a explicar la centralidad científica internacional de Galápagos.",
+    "importancia": "Ayuda a explicar la centralidad científica internacional de Galápagos.",
+    "lugares_relacionados": [
+      "Galápagos"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "ciencia",
+      "Galápagos",
+      "evolución"
+    ],
+    "anio_inicio": 1809,
+    "anio_fin": 1882,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "quito",
+    "nombre": "Quito",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico, colonial y republicano",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Capital del Ecuador y uno de los centros históricos más importantes del país.",
+    "descripcion_larga": "Capital del Ecuador y uno de los centros históricos más importantes del país. Es un eje esencial para comprender la historia política, urbana y cultural del Ecuador.",
+    "importancia": "Es un eje esencial para comprender la historia política, urbana y cultural del Ecuador.",
+    "lugares_relacionados": [
+      "Centro Histórico de Quito",
+      "Plaza Grande",
+      "Palacio de Carondelet"
+    ],
+    "personajes_relacionados": [
+      "Eugenio Espejo",
+      "Gabriel García Moreno"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "capital",
+      "Quito",
+      "patrimonio"
+    ],
+    "anio_inicio": 1534,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "guayaquil",
+    "nombre": "Guayaquil",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Principal ciudad portuaria del país y actor decisivo en la economía y la política nacional.",
+    "descripcion_larga": "Principal ciudad portuaria del país y actor decisivo en la economía y la política nacional. Es indispensable para estudiar la formación regional, el comercio y la política nacional.",
+    "importancia": "Es indispensable para estudiar la formación regional, el comercio y la política nacional.",
+    "lugares_relacionados": [
+      "Puerto de Guayaquil",
+      "Cerro Santa Ana"
+    ],
+    "personajes_relacionados": [
+      "José Joaquín de Olmedo",
+      "Vicente Rocafuerte"
+    ],
+    "eventos_relacionados": [
+      "Independencia de Guayaquil"
+    ],
+    "etiquetas": [
+      "puerto",
+      "Costa",
+      "comercio"
+    ],
+    "anio_inicio": 1538,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "cuenca",
+    "nombre": "Cuenca",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Cuenca, Ecuador",
+    "resumen": "Ciudad andina asociada a la herencia colonial y al pasado de Tomebamba.",
+    "descripcion_larga": "Ciudad andina asociada a la herencia colonial y al pasado de Tomebamba. Permite conectar la historia prehispánica, colonial y urbana del sur andino.",
+    "importancia": "Permite conectar la historia prehispánica, colonial y urbana del sur andino.",
+    "lugares_relacionados": [
+      "Pumapungo",
+      "Ingapirca"
+    ],
+    "personajes_relacionados": [
+      "Abdón Calderón"
+    ],
+    "eventos_relacionados": [
+      "Fundación de Cuenca",
+      "Independencia de Cuenca"
+    ],
+    "etiquetas": [
+      "Cuenca",
+      "Sierra",
+      "patrimonio"
+    ],
+    "anio_inicio": 1557,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "montecristi",
+    "nombre": "Montecristi",
+    "tipo": "lugar",
+    "epoca": "Siglos XIX-XXI",
+    "ubicacion": "Manabí, Ecuador",
+    "resumen": "Ciudad vinculada a Eloy Alfaro y a momentos constitucionales de la historia ecuatoriana.",
+    "descripcion_larga": "Ciudad vinculada a Eloy Alfaro y a momentos constitucionales de la historia ecuatoriana. Es importante para estudiar el liberalismo, la memoria republicana y la identidad manabita.",
+    "importancia": "Es importante para estudiar el liberalismo, la memoria republicana y la identidad manabita.",
+    "lugares_relacionados": [
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Eloy Alfaro"
+    ],
+    "eventos_relacionados": [
+      "Revolución Liberal"
+    ],
+    "etiquetas": [
+      "Manabí",
+      "liberalismo",
+      "memoria"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "ingapirca",
+    "nombre": "Ingapirca",
+    "tipo": "lugar",
+    "epoca": "Periodo cañari e inca",
+    "ubicacion": "Cañar, Ecuador",
+    "resumen": "Complejo arqueológico asociado a la presencia cañari e inca en el sur andino.",
+    "descripcion_larga": "Complejo arqueológico asociado a la presencia cañari e inca en el sur andino. Es esencial para comprender la historia prehispánica andina y el patrimonio arqueológico ecuatoriano.",
+    "importancia": "Es esencial para comprender la historia prehispánica andina y el patrimonio arqueológico ecuatoriano.",
+    "lugares_relacionados": [
+      "Cuenca",
+      "Qhapaq Ñan"
+    ],
+    "personajes_relacionados": [
+      "Huayna Cápac"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "arqueología",
+      "inca",
+      "cañari"
+    ],
+    "anio_inicio": 1460,
+    "anio_fin": 1500,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "palacio_carondelet",
+    "nombre": "Palacio de Carondelet",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Sede histórica del poder ejecutivo ecuatoriano.",
+    "descripcion_larga": "Sede histórica del poder ejecutivo ecuatoriano. Es un lugar clave para visualizar la continuidad y transformación del Estado en el Ecuador.",
+    "importancia": "Es un lugar clave para visualizar la continuidad y transformación del Estado en el Ecuador.",
+    "lugares_relacionados": [
+      "Plaza Grande",
+      "Centro Histórico de Quito"
+    ],
+    "personajes_relacionados": [
+      "Gabriel García Moreno",
+      "José María Velasco Ibarra"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "Estado",
+      "presidencia",
+      "Quito"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "volcan_pichincha",
+    "nombre": "Volcán Pichincha",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico y republicano",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Macizo andino que domina la ciudad de Quito y escenario de un combate decisivo de la independencia.",
+    "descripcion_larga": "Macizo andino que domina la ciudad de Quito y escenario de un combate decisivo de la independencia. Conecta historia natural, memoria urbana e independencia en un mismo referente espacial.",
+    "importancia": "Conecta historia natural, memoria urbana e independencia en un mismo referente espacial.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Antonio José de Sucre",
+      "Abdón Calderón"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "volcán",
+      "Quito",
+      "independencia"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "cerro_santa_ana",
+    "nombre": "Cerro Santa Ana",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Sector histórico de Guayaquil asociado a los orígenes y al paisaje del puerto.",
+    "descripcion_larga": "Sector histórico de Guayaquil asociado a los orígenes y al paisaje del puerto. Permite articular la historia urbana de Guayaquil con su dimensión portuaria.",
+    "importancia": "Permite articular la historia urbana de Guayaquil con su dimensión portuaria.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Puerto de Guayaquil"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "Guayaquil",
+      "puerto",
+      "paisaje"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "catedral_metropolitana_de_quito",
+    "nombre": "Catedral Metropolitana de Quito",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Templo central de la capital y pieza relevante del patrimonio religioso.",
+    "descripcion_larga": "Templo central de la capital y pieza relevante del patrimonio religioso. Es un referente clave para comprender el peso de la Iglesia en la formación histórica de Quito.",
+    "importancia": "Es un referente clave para comprender el peso de la Iglesia en la formación histórica de Quito.",
+    "lugares_relacionados": [
+      "Plaza Grande",
+      "Centro Histórico de Quito"
+    ],
+    "personajes_relacionados": [
+      "Mariana de Jesús"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "religión",
+      "Quito",
+      "patrimonio"
+    ],
+    "anio_inicio": 1562,
+    "anio_fin": 1800,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "basilica_del_voto_nacional",
+    "nombre": "Basílica del Voto Nacional",
+    "tipo": "lugar",
+    "epoca": "Siglos XIX-XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Templo neogótico asociado a la memoria religiosa y urbana de la capital moderna.",
+    "descripcion_larga": "Templo neogótico asociado a la memoria religiosa y urbana de la capital moderna. Es una referencia importante del cambio urbano y simbólico de Quito entre los siglos XIX y XX.",
+    "importancia": "Es una referencia importante del cambio urbano y simbólico de Quito entre los siglos XIX y XX.",
+    "lugares_relacionados": [
+      "Quito",
+      "Centro Histórico de Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "arquitectura",
+      "religión",
+      "Quito"
+    ],
+    "anio_inicio": 1892,
+    "anio_fin": 1924,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "chimborazo",
+    "nombre": "Chimborazo",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico y republicano",
+    "ubicacion": "Chimborazo, Ecuador",
+    "resumen": "Montaña emblemática de la Sierra central con profunda presencia en la memoria del país.",
+    "descripcion_larga": "Montaña emblemática de la Sierra central con profunda presencia en la memoria del país. Es un símbolo geográfico de alto valor histórico y cultural para el Ecuador.",
+    "importancia": "Es un símbolo geográfico de alto valor histórico y cultural para el Ecuador.",
+    "lugares_relacionados": [
+      "Riobamba"
+    ],
+    "personajes_relacionados": [
+      "Alexander von Humboldt"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "Andes",
+      "paisaje",
+      "ciencia"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "cotopaxi",
+    "nombre": "Cotopaxi",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico y republicano",
+    "ubicacion": "Cotopaxi, Ecuador",
+    "resumen": "Volcán emblemático con gran presencia en la historia del paisaje y la observación científica.",
+    "descripcion_larga": "Volcán emblemático con gran presencia en la historia del paisaje y la observación científica. Contribuye a comprender la relación entre naturaleza, identidad nacional y conocimiento científico.",
+    "importancia": "Contribuye a comprender la relación entre naturaleza, identidad nacional y conocimiento científico.",
+    "lugares_relacionados": [
+      "Latacunga"
+    ],
+    "personajes_relacionados": [
+      "Alexander von Humboldt"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "volcán",
+      "Andes",
+      "ciencia"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "riobamba",
+    "nombre": "Riobamba",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Riobamba, Ecuador",
+    "resumen": "Ciudad de la Sierra central vinculada a trayectorias políticas, científicas y sísmicas.",
+    "descripcion_larga": "Ciudad de la Sierra central vinculada a trayectorias políticas, científicas y sísmicas. Es un espacio clave para estudiar historia regional, movilidad andina y memoria social.",
+    "importancia": "Es un espacio clave para estudiar historia regional, movilidad andina y memoria social.",
+    "lugares_relacionados": [
+      "Chimborazo"
+    ],
+    "personajes_relacionados": [
+      "Pedro Vicente Maldonado",
+      "Fernando Daquilema"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "Sierra",
+      "memoria",
+      "región"
+    ],
+    "anio_inicio": 1534,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "loja",
+    "nombre": "Loja",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Loja, Ecuador",
+    "resumen": "Ciudad del sur andino vinculada a tradiciones intelectuales y cívicas del Ecuador.",
+    "descripcion_larga": "Ciudad del sur andino vinculada a tradiciones intelectuales y cívicas del Ecuador. Es importante para comprender la diversidad regional de la historia cultural ecuatoriana.",
+    "importancia": "Es importante para comprender la diversidad regional de la historia cultural ecuatoriana.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [
+      "Matilde Hidalgo",
+      "Benjamín Carrión"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "Loja",
+      "cultura",
+      "sur andino"
+    ],
+    "anio_inicio": 1548,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "otavalo",
+    "nombre": "Otavalo",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico y republicano",
+    "ubicacion": "Imbabura, Ecuador",
+    "resumen": "Ciudad andina asociada a una fuerte continuidad indígena y a redes culturales y comerciales.",
+    "descripcion_larga": "Ciudad andina asociada a una fuerte continuidad indígena y a redes culturales y comerciales. Permite estudiar la continuidad histórica de pueblos indígenas en el marco republicano.",
+    "importancia": "Permite estudiar la continuidad histórica de pueblos indígenas en el marco republicano.",
+    "lugares_relacionados": [
+      "Cayambe"
+    ],
+    "personajes_relacionados": [
+      "Dolores Cacuango",
+      "Tránsito Amaguaña"
+    ],
+    "eventos_relacionados": [
+      "Levantamiento Indígena de 1990"
+    ],
+    "etiquetas": [
+      "indígena",
+      "Andes",
+      "comercio"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "ambato",
+    "nombre": "Ambato",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Ambato, Ecuador",
+    "resumen": "Ciudad serrana asociada a figuras intelectuales y a un terremoto decisivo en la memoria nacional.",
+    "descripcion_larga": "Ciudad serrana asociada a figuras intelectuales y a un terremoto decisivo en la memoria nacional. Permite articular historia urbana, cultural y de desastres en el Ecuador.",
+    "importancia": "Permite articular historia urbana, cultural y de desastres en el Ecuador.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [
+      "Juan Montalvo",
+      "Juan León Mera"
+    ],
+    "eventos_relacionados": [
+      "Terremoto de Ambato de 1949"
+    ],
+    "etiquetas": [
+      "Sierra",
+      "cultura",
+      "memoria"
+    ],
+    "anio_inicio": 1698,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "pumapungo",
+    "nombre": "Pumapungo",
+    "tipo": "lugar",
+    "epoca": "Periodo cañari e inca",
+    "ubicacion": "Cuenca, Ecuador",
+    "resumen": "Sitio arqueológico asociado a Tomebamba y al pasado prehispánico de la actual Cuenca.",
+    "descripcion_larga": "Sitio arqueológico asociado a Tomebamba y al pasado prehispánico de la actual Cuenca. Es un punto clave para estudiar la relación entre ciudad contemporánea y pasado prehispánico.",
+    "importancia": "Es un punto clave para estudiar la relación entre ciudad contemporánea y pasado prehispánico.",
+    "lugares_relacionados": [
+      "Cuenca"
+    ],
+    "personajes_relacionados": [
+      "Huayna Cápac"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "arqueología",
+      "inca",
+      "Cuenca"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "cochasqui",
+    "nombre": "Cochasquí",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico",
+    "ubicacion": "Pichincha, Ecuador",
+    "resumen": "Complejo arqueológico conocido por sus pirámides y por su relevancia para la historia prehispánica.",
+    "descripcion_larga": "Complejo arqueológico conocido por sus pirámides y por su relevancia para la historia prehispánica. Es valioso para ampliar la mirada sobre la profundidad temporal de la historia ecuatoriana.",
+    "importancia": "Es valioso para ampliar la mirada sobre la profundidad temporal de la historia ecuatoriana.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "arqueología",
+      "pirámides",
+      "prehispánico"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "qhapaq_nan",
+    "nombre": "Qhapaq Ñan",
+    "tipo": "lugar",
+    "epoca": "Periodo inca",
+    "ubicacion": "Andes del Ecuador",
+    "resumen": "Red vial andina integrada al sistema imperial inca.",
+    "descripcion_larga": "Red vial andina integrada al sistema imperial inca. Es fundamental para comprender movilidad, articulación territorial y patrimonio andino en el Ecuador.",
+    "importancia": "Es fundamental para comprender movilidad, articulación territorial y patrimonio andino en el Ecuador.",
+    "lugares_relacionados": [
+      "Ingapirca",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Huayna Cápac",
+      "Atahualpa"
+    ],
+    "eventos_relacionados": [
+      "Guerra Civil Inca"
+    ],
+    "etiquetas": [
+      "inca",
+      "camino",
+      "Andes"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "galapagos",
+    "nombre": "Galápagos",
+    "tipo": "lugar",
+    "epoca": "Periodo republicano y contemporáneo",
+    "ubicacion": "Galápagos, Ecuador",
+    "resumen": "Archipiélago ecuatoriano de enorme relevancia científica, ambiental y simbólica.",
+    "descripcion_larga": "Archipiélago ecuatoriano de enorme relevancia científica, ambiental y simbólica. Es un referente internacional del Ecuador y de la historia global de la ciencia.",
+    "importancia": "Es un referente internacional del Ecuador y de la historia global de la ciencia.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [
+      "Charles Darwin"
+    ],
+    "eventos_relacionados": [
+      "Incorporación de Galápagos al Ecuador"
+    ],
+    "etiquetas": [
+      "islas",
+      "ciencia",
+      "patrimonio"
+    ],
+    "anio_inicio": 1832,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "isla_puna",
+    "nombre": "Isla Puná",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico y colonial",
+    "ubicacion": "Guayas, Ecuador",
+    "resumen": "Isla del golfo de Guayaquil asociada a circuitos indígenas y tempranos contactos coloniales.",
+    "descripcion_larga": "Isla del golfo de Guayaquil asociada a circuitos indígenas y tempranos contactos coloniales. Aporta una perspectiva costera a la historia del territorio ecuatoriano.",
+    "importancia": "Aporta una perspectiva costera a la historia del territorio ecuatoriano.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Puerto de Guayaquil"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Fundación de Guayaquil"
+    ],
+    "etiquetas": [
+      "costa",
+      "golfo",
+      "colonial"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "puerto_de_guayaquil",
+    "nombre": "Puerto de Guayaquil",
+    "tipo": "lugar",
+    "epoca": "Periodo colonial y republicano",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Espacio portuario central para la economía y la articulación internacional del Ecuador.",
+    "descripcion_larga": "Espacio portuario central para la economía y la articulación internacional del Ecuador. Es indispensable para estudiar la historia económica y regional del Ecuador.",
+    "importancia": "Es indispensable para estudiar la historia económica y regional del Ecuador.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Cerro Santa Ana"
+    ],
+    "personajes_relacionados": [
+      "José Joaquín de Olmedo",
+      "Vicente Rocafuerte"
+    ],
+    "eventos_relacionados": [
+      "Independencia de Guayaquil"
+    ],
+    "etiquetas": [
+      "puerto",
+      "comercio",
+      "economía"
+    ],
+    "anio_inicio": 1538,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "real_alto",
+    "nombre": "Real Alto",
+    "tipo": "lugar",
+    "epoca": "Periodo formativo",
+    "ubicacion": "Santa Elena, Ecuador",
+    "resumen": "Sitio arqueológico asociado a antiguos desarrollos culturales de la costa ecuatoriana.",
+    "descripcion_larga": "Sitio arqueológico asociado a antiguos desarrollos culturales de la costa ecuatoriana. Es importante para ampliar el relato histórico más allá del periodo colonial y republicano.",
+    "importancia": "Es importante para ampliar el relato histórico más allá del periodo colonial y republicano.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Cultura Valdivia"
+    ],
+    "etiquetas": [
+      "arqueología",
+      "costa",
+      "antigüedad"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "cayambe",
+    "nombre": "Cayambe",
+    "tipo": "lugar",
+    "epoca": "Periodo prehispánico y republicano",
+    "ubicacion": "Pichincha, Ecuador",
+    "resumen": "Territorio andino asociado a comunidades indígenas y a liderazgos campesinos del siglo XX.",
+    "descripcion_larga": "Territorio andino asociado a comunidades indígenas y a liderazgos campesinos del siglo XX. Es clave para estudiar la continuidad de luchas comunitarias en la Sierra norte.",
+    "importancia": "Es clave para estudiar la continuidad de luchas comunitarias en la Sierra norte.",
+    "lugares_relacionados": [
+      "Otavalo",
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Dolores Cacuango",
+      "Tránsito Amaguaña"
+    ],
+    "eventos_relacionados": [
+      "Levantamiento Indígena de 1990"
+    ],
+    "etiquetas": [
+      "indígena",
+      "campesinado",
+      "Sierra"
+    ],
+    "anio_inicio": 0,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "mitad_del_mundo",
+    "nombre": "Mitad del Mundo",
+    "tipo": "lugar",
+    "epoca": "Siglos XVIII-XX",
+    "ubicacion": "Pichincha, Ecuador",
+    "resumen": "Sitio simbólico asociado a la geodesia y a la representación ecuatorial del país.",
+    "descripcion_larga": "Sitio simbólico asociado a la geodesia y a la representación ecuatorial del país. Conecta ciencia, territorio e imagen país.",
+    "importancia": "Conecta ciencia, territorio e imagen país.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "La Condamine",
+      "Pedro Vicente Maldonado"
+    ],
+    "eventos_relacionados": [
+      "Misión Geodésica Francesa"
+    ],
+    "etiquetas": [
+      "geografía",
+      "ciencia",
+      "ecuador"
+    ],
+    "anio_inicio": 1736,
+    "anio_fin": 0,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "guerra_civil_inca",
+    "nombre": "Guerra Civil Inca",
+    "tipo": "evento",
+    "epoca": "Siglo XVI",
+    "ubicacion": "Andes septentrionales y centrales",
+    "resumen": "Conflicto sucesorio entre Huáscar y Atahualpa que afectó de forma decisiva al espacio de Quito.",
+    "descripcion_larga": "Conflicto sucesorio entre Huáscar y Atahualpa que afectó de forma decisiva al espacio de Quito. Es un antecedente clave para entender la caída del poder inca y la transformación del espacio andino.",
+    "importancia": "Es un antecedente clave para entender la caída del poder inca y la transformación del espacio andino.",
+    "lugares_relacionados": [
+      "Quito",
+      "Qhapaq Ñan"
+    ],
+    "personajes_relacionados": [
+      "Atahualpa",
+      "Huayna Cápac",
+      "Rumiñahui"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "inca",
+      "conflicto",
+      "Quito"
+    ],
+    "anio_inicio": 1529,
+    "anio_fin": 1532,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "fundacion_espanola_quito",
+    "nombre": "Fundación Española de Quito",
+    "tipo": "evento",
+    "epoca": "Siglo XVI",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Proceso de establecimiento de la ciudad colonial de Quito en 1534.",
+    "descripcion_larga": "Proceso de establecimiento de la ciudad colonial de Quito en 1534. Es un punto de partida fundamental para la historia urbana y colonial de la capital.",
+    "importancia": "Es un punto de partida fundamental para la historia urbana y colonial de la capital.",
+    "lugares_relacionados": [
+      "Quito",
+      "Plaza Grande"
+    ],
+    "personajes_relacionados": [
+      "Sebastián de Benalcázar",
+      "Rumiñahui"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "fundación",
+      "colonial",
+      "Quito"
+    ],
+    "anio_inicio": 1534,
+    "anio_fin": 1534,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "fundacion_de_guayaquil",
+    "nombre": "Fundación de Guayaquil",
+    "tipo": "evento",
+    "epoca": "Siglo XVI",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Proceso de consolidación de la ciudad portuaria de Guayaquil en el siglo XVI.",
+    "descripcion_larga": "Proceso de consolidación de la ciudad portuaria de Guayaquil en el siglo XVI. Es importante para comprender la formación histórica del litoral ecuatoriano.",
+    "importancia": "Es importante para comprender la formación histórica del litoral ecuatoriano.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Puerto de Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Sebastián de Benalcázar"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "fundación",
+      "puerto",
+      "Costa"
+    ],
+    "anio_inicio": 1538,
+    "anio_fin": 1538,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "fundacion_de_cuenca",
+    "nombre": "Fundación de Cuenca",
+    "tipo": "evento",
+    "epoca": "Siglo XVI",
+    "ubicacion": "Cuenca, Ecuador",
+    "resumen": "Establecimiento de la ciudad española de Cuenca en el sur andino.",
+    "descripcion_larga": "Establecimiento de la ciudad española de Cuenca en el sur andino. Es clave para la historia urbana y regional del austro ecuatoriano.",
+    "importancia": "Es clave para la historia urbana y regional del austro ecuatoriano.",
+    "lugares_relacionados": [
+      "Cuenca",
+      "Pumapungo"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "fundación",
+      "Cuenca",
+      "ciudad"
+    ],
+    "anio_inicio": 1557,
+    "anio_fin": 1557,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "rebelion_de_las_alcabalas",
+    "nombre": "Rebelión de las Alcabalas",
+    "tipo": "evento",
+    "epoca": "Periodo colonial",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Levantamiento urbano contra medidas fiscales de la Corona a fines del siglo XVI.",
+    "descripcion_larga": "Levantamiento urbano contra medidas fiscales de la Corona a fines del siglo XVI. Es uno de los antecedentes más citados de conflictividad política en la historia colonial de Quito.",
+    "importancia": "Es uno de los antecedentes más citados de conflictividad política en la historia colonial de Quito.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "colonial",
+      "impuestos",
+      "rebelión"
+    ],
+    "anio_inicio": 1592,
+    "anio_fin": 1593,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "revolucion_de_los_estancos",
+    "nombre": "Revolución de los Estancos",
+    "tipo": "evento",
+    "epoca": "Periodo colonial",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Sublevación quiteña de 1765 vinculada al rechazo a monopolios e impuestos.",
+    "descripcion_larga": "Sublevación quiteña de 1765 vinculada al rechazo a monopolios e impuestos. Es un hecho importante para comprender el descontento colonial previo al ciclo independentista.",
+    "importancia": "Es un hecho importante para comprender el descontento colonial previo al ciclo independentista.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "colonial",
+      "fiscalidad",
+      "protesta"
+    ],
+    "anio_inicio": 1765,
+    "anio_fin": 1765,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "mision_geodesica_francesa",
+    "nombre": "Misión Geodésica Francesa",
+    "tipo": "evento",
+    "epoca": "Siglo XVIII",
+    "ubicacion": "Quito y Andes ecuatorianos",
+    "resumen": "Expedición científica internacional que midió un arco del meridiano en la región de Quito.",
+    "descripcion_larga": "Expedición científica internacional que midió un arco del meridiano en la región de Quito. Conecta la historia del Ecuador con la circulación global del conocimiento científico moderno.",
+    "importancia": "Conecta la historia del Ecuador con la circulación global del conocimiento científico moderno.",
+    "lugares_relacionados": [
+      "Quito",
+      "Mitad del Mundo"
+    ],
+    "personajes_relacionados": [
+      "La Condamine",
+      "Pedro Vicente Maldonado"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "ciencia",
+      "Ilustración",
+      "geodesia"
+    ],
+    "anio_inicio": 1736,
+    "anio_fin": 1744,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "expedicion_de_orellana",
+    "nombre": "Expedición de Orellana",
+    "tipo": "evento",
+    "epoca": "Siglo XVI",
+    "ubicacion": "Quito y Amazonía",
+    "resumen": "Viaje iniciado desde el espacio quiteño que desembocó en la travesía del río Amazonas.",
+    "descripcion_larga": "Viaje iniciado desde el espacio quiteño que desembocó en la travesía del río Amazonas. Es relevante para comprender la temprana proyección amazónica del espacio quiteño.",
+    "importancia": "Es relevante para comprender la temprana proyección amazónica del espacio quiteño.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "Amazonía",
+      "exploración",
+      "colonial"
+    ],
+    "anio_inicio": 1541,
+    "anio_fin": 1542,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "masacre_del_2_de_agosto_de_1810",
+    "nombre": "Masacre del 2 de Agosto de 1810",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Represión violenta ocurrida en Quito tras el proceso político iniciado en 1809.",
+    "descripcion_larga": "Represión violenta ocurrida en Quito tras el proceso político iniciado en 1809. Es un hito clave de la memoria política y cívica de la capital.",
+    "importancia": "Es un hito clave de la memoria política y cívica de la capital.",
+    "lugares_relacionados": [
+      "Quito",
+      "Centro Histórico de Quito"
+    ],
+    "personajes_relacionados": [
+      "Carlos Montúfar",
+      "Juan Pío Montúfar"
+    ],
+    "eventos_relacionados": [
+      "Primer Grito de Independencia"
+    ],
+    "etiquetas": [
+      "represión",
+      "Quito",
+      "memoria"
+    ],
+    "anio_inicio": 1810,
+    "anio_fin": 1810,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "independencia_de_guayaquil",
+    "nombre": "Independencia de Guayaquil",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Guayaquil, Ecuador",
+    "resumen": "Proceso revolucionario de 1820 que proclamó la independencia de la ciudad y su provincia.",
+    "descripcion_larga": "Proceso revolucionario de 1820 que proclamó la independencia de la ciudad y su provincia. Es fundamental para comprender la independencia del territorio ecuatoriano desde la perspectiva costeña.",
+    "importancia": "Es fundamental para comprender la independencia del territorio ecuatoriano desde la perspectiva costeña.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Puerto de Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "José Joaquín de Olmedo",
+      "Vicente Rocafuerte"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Pichincha"
+    ],
+    "etiquetas": [
+      "1820",
+      "Guayaquil",
+      "independencia"
+    ],
+    "anio_inicio": 1820,
+    "anio_fin": 1820,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "independencia_de_cuenca",
+    "nombre": "Independencia de Cuenca",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Cuenca, Ecuador",
+    "resumen": "Proceso político y militar desarrollado en Cuenca durante 1820.",
+    "descripcion_larga": "Proceso político y militar desarrollado en Cuenca durante 1820. Es importante para observar la diversidad regional del proceso independentista.",
+    "importancia": "Es importante para observar la diversidad regional del proceso independentista.",
+    "lugares_relacionados": [
+      "Cuenca"
+    ],
+    "personajes_relacionados": [
+      "Abdón Calderón"
+    ],
+    "eventos_relacionados": [
+      "Batalla de Verdeloma"
+    ],
+    "etiquetas": [
+      "1820",
+      "Cuenca",
+      "independencia"
+    ],
+    "anio_inicio": 1820,
+    "anio_fin": 1820,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "batalla_de_verdeloma",
+    "nombre": "Batalla de Verdeloma",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Provincia del Azuay, Ecuador",
+    "resumen": "Combate asociado al proceso de independencia en el austro ecuatoriano.",
+    "descripcion_larga": "Combate asociado al proceso de independencia en el austro ecuatoriano. Aporta una mirada regional a la historia militar de la independencia ecuatoriana.",
+    "importancia": "Aporta una mirada regional a la historia militar de la independencia ecuatoriana.",
+    "lugares_relacionados": [
+      "Cuenca"
+    ],
+    "personajes_relacionados": [
+      "Abdón Calderón"
+    ],
+    "eventos_relacionados": [
+      "Independencia de Cuenca"
+    ],
+    "etiquetas": [
+      "batalla",
+      "austro",
+      "independencia"
+    ],
+    "anio_inicio": 1820,
+    "anio_fin": 1820,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "batalla_de_tarqui",
+    "nombre": "Batalla de Tarqui",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Sur del actual Ecuador",
+    "resumen": "Enfrentamiento militar de 1829 entre fuerzas de la Gran Colombia y del Perú.",
+    "descripcion_larga": "Enfrentamiento militar de 1829 entre fuerzas de la Gran Colombia y del Perú. Es importante para comprender la conflictividad interestatal en los primeros años republicanos andinos.",
+    "importancia": "Es importante para comprender la conflictividad interestatal en los primeros años republicanos andinos.",
+    "lugares_relacionados": [
+      "Cuenca"
+    ],
+    "personajes_relacionados": [
+      "Antonio José de Sucre"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "frontera",
+      "batalla",
+      "república"
+    ],
+    "anio_inicio": 1829,
+    "anio_fin": 1829,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "separacion_de_la_gran_colombia",
+    "nombre": "Separación de la Gran Colombia",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Proceso político de 1830 mediante el cual el Ecuador se constituyó como república separada.",
+    "descripcion_larga": "Proceso político de 1830 mediante el cual el Ecuador se constituyó como república separada. Es uno de los acontecimientos fundacionales de la historia política nacional.",
+    "importancia": "Es uno de los acontecimientos fundacionales de la historia política nacional.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Juan José Flores",
+      "Vicente Rocafuerte",
+      "Simón Bolívar"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "1830",
+      "república",
+      "Estado"
+    ],
+    "anio_inicio": 1830,
+    "anio_fin": 1830,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "revolucion_liberal",
+    "nombre": "Revolución Liberal",
+    "tipo": "evento",
+    "epoca": "Siglos XIX-XX",
+    "ubicacion": "Ecuador",
+    "resumen": "Proceso político iniciado en 1895 que impulsó reformas estatales y transformaciones entre Iglesia y Estado.",
+    "descripcion_larga": "Proceso político iniciado en 1895 que impulsó reformas estatales y transformaciones entre Iglesia y Estado. Es uno de los procesos de transformación más importantes de la historia moderna del Ecuador.",
+    "importancia": "Es uno de los procesos de transformación más importantes de la historia moderna del Ecuador.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Quito",
+      "Montecristi"
+    ],
+    "personajes_relacionados": [
+      "Eloy Alfaro",
+      "Luis Vargas Torres"
+    ],
+    "eventos_relacionados": [
+      "Inauguración del Ferrocarril Guayaquil-Quito",
+      "Hoguera Bárbara"
+    ],
+    "etiquetas": [
+      "liberalismo",
+      "reformas",
+      "república"
+    ],
+    "anio_inicio": 1895,
+    "anio_fin": 1912,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "inauguracion_ferrocarril_guayaquil_quito",
+    "nombre": "Inauguración del Ferrocarril Guayaquil-Quito",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Guayaquil y Quito, Ecuador",
+    "resumen": "Culminación simbólica de la gran obra ferroviaria que conectó Costa y Sierra en 1908.",
+    "descripcion_larga": "Culminación simbólica de la gran obra ferroviaria que conectó Costa y Sierra en 1908. Es fundamental para entender los proyectos de infraestructura y unidad nacional en la república.",
+    "importancia": "Es fundamental para entender los proyectos de infraestructura y unidad nacional en la república.",
+    "lugares_relacionados": [
+      "Guayaquil",
+      "Quito",
+      "Riobamba"
+    ],
+    "personajes_relacionados": [
+      "Eloy Alfaro"
+    ],
+    "eventos_relacionados": [
+      "Revolución Liberal"
+    ],
+    "etiquetas": [
+      "ferrocarril",
+      "integración",
+      "modernización"
+    ],
+    "anio_inicio": 1908,
+    "anio_fin": 1908,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "hoguera_barbara",
+    "nombre": "Hoguera Bárbara",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Asesinato y arrastre de Eloy Alfaro y otros liberales en 1912.",
+    "descripcion_larga": "Asesinato y arrastre de Eloy Alfaro y otros liberales en 1912. Es un referente decisivo para estudiar la violencia política y la memoria liberal.",
+    "importancia": "Es un referente decisivo para estudiar la violencia política y la memoria liberal.",
+    "lugares_relacionados": [
+      "Quito",
+      "Centro Histórico de Quito"
+    ],
+    "personajes_relacionados": [
+      "Eloy Alfaro"
+    ],
+    "eventos_relacionados": [
+      "Revolución Liberal"
+    ],
+    "etiquetas": [
+      "violencia política",
+      "liberalismo",
+      "Quito"
+    ],
+    "anio_inicio": 1912,
+    "anio_fin": 1912,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "revolucion_juliana",
+    "nombre": "Revolución Juliana",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Quito, Ecuador",
+    "resumen": "Movimiento militar y político de 1925 que abrió un ciclo de reformas estatales y financieras.",
+    "descripcion_larga": "Movimiento militar y político de 1925 que abrió un ciclo de reformas estatales y financieras. Es un hito clave para comprender la modernización estatal del siglo XX.",
+    "importancia": "Es un hito clave para comprender la modernización estatal del siglo XX.",
+    "lugares_relacionados": [
+      "Quito"
+    ],
+    "personajes_relacionados": [
+      "Isidro Ayora",
+      "Alberto Enríquez Gallo"
+    ],
+    "eventos_relacionados": [
+      "Constitución de 1929"
+    ],
+    "etiquetas": [
+      "1925",
+      "reformas",
+      "Estado"
+    ],
+    "anio_inicio": 1925,
+    "anio_fin": 1925,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "guerra_peruano_ecuatoriana_de_1941",
+    "nombre": "Guerra Peruano-Ecuatoriana de 1941",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Frontera sur del Ecuador",
+    "resumen": "Conflicto armado entre Ecuador y Perú con fuertes repercusiones territoriales y políticas.",
+    "descripcion_larga": "Conflicto armado entre Ecuador y Perú con fuertes repercusiones territoriales y políticas. Es esencial para comprender la historia de la frontera sur y la sensibilidad territorial ecuatoriana.",
+    "importancia": "Es esencial para comprender la historia de la frontera sur y la sensibilidad territorial ecuatoriana.",
+    "lugares_relacionados": [
+      "Zaruma"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Batalla Naval de Jambelí",
+      "Protocolo de Río de Janeiro"
+    ],
+    "etiquetas": [
+      "frontera",
+      "guerra",
+      "territorio"
+    ],
+    "anio_inicio": 1941,
+    "anio_fin": 1941,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "batalla_naval_de_jambeli",
+    "nombre": "Batalla Naval de Jambelí",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Costa sur del Ecuador",
+    "resumen": "Enfrentamiento naval ocurrido durante el conflicto de 1941 entre Ecuador y Perú.",
+    "descripcion_larga": "Enfrentamiento naval ocurrido durante el conflicto de 1941 entre Ecuador y Perú. Es un referente de la memoria bélica del siglo XX ecuatoriano.",
+    "importancia": "Es un referente de la memoria bélica del siglo XX ecuatoriano.",
+    "lugares_relacionados": [
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Guerra Peruano-Ecuatoriana de 1941"
+    ],
+    "etiquetas": [
+      "marina",
+      "guerra",
+      "patriotismo"
+    ],
+    "anio_inicio": 1941,
+    "anio_fin": 1941,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "protocolo_de_rio_de_janeiro",
+    "nombre": "Protocolo de Río de Janeiro",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "América del Sur",
+    "resumen": "Acuerdo firmado en 1942 tras la guerra entre Ecuador y Perú.",
+    "descripcion_larga": "Acuerdo firmado en 1942 tras la guerra entre Ecuador y Perú. Es un hito diplomático indispensable para estudiar la historia territorial del Ecuador moderno.",
+    "importancia": "Es un hito diplomático indispensable para estudiar la historia territorial del Ecuador moderno.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Guerra Peruano-Ecuatoriana de 1941"
+    ],
+    "etiquetas": [
+      "diplomacia",
+      "frontera",
+      "tratado"
+    ],
+    "anio_inicio": 1942,
+    "anio_fin": 1942,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "terremoto_de_ambato_de_1949",
+    "nombre": "Terremoto de Ambato de 1949",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Ambato y Sierra central, Ecuador",
+    "resumen": "Sismo de gran impacto social y material ocurrido en la Sierra central.",
+    "descripcion_larga": "Sismo de gran impacto social y material ocurrido en la Sierra central. Es clave para estudiar la historia social de los desastres en el Ecuador.",
+    "importancia": "Es clave para estudiar la historia social de los desastres en el Ecuador.",
+    "lugares_relacionados": [
+      "Ambato",
+      "Riobamba"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "sismo",
+      "desastre",
+      "Ambato"
+    ],
+    "anio_inicio": 1949,
+    "anio_fin": 1949,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "retorno_a_la_democracia_de_1979",
+    "nombre": "Retorno a la Democracia de 1979",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Ecuador",
+    "resumen": "Proceso de transición que restauró la elección presidencial tras el último ciclo militar.",
+    "descripcion_larga": "Proceso de transición que restauró la elección presidencial tras el último ciclo militar. Es un punto de inflexión para comprender la democracia contemporánea ecuatoriana.",
+    "importancia": "Es un punto de inflexión para comprender la democracia contemporánea ecuatoriana.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [
+      "Jaime Roldós Aguilera"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "democracia",
+      "transición",
+      "elecciones"
+    ],
+    "anio_inicio": 1979,
+    "anio_fin": 1979,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "guerra_de_paquisha",
+    "nombre": "Guerra de Paquisha",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Frontera amazónica del Ecuador",
+    "resumen": "Enfrentamiento fronterizo entre Ecuador y Perú ocurrido en 1981.",
+    "descripcion_larga": "Enfrentamiento fronterizo entre Ecuador y Perú ocurrido en 1981. Es importante para seguir la continuidad del diferendo fronterizo en el siglo XX.",
+    "importancia": "Es importante para seguir la continuidad del diferendo fronterizo en el siglo XX.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Guerra del Cenepa"
+    ],
+    "etiquetas": [
+      "frontera",
+      "Amazonía",
+      "guerra"
+    ],
+    "anio_inicio": 1981,
+    "anio_fin": 1981,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "levantamiento_indigena_de_1990",
+    "nombre": "Levantamiento Indígena de 1990",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Ecuador",
+    "resumen": "Movilización indígena nacional que transformó el debate sobre ciudadanía, territorio y plurinacionalidad.",
+    "descripcion_larga": "Movilización indígena nacional que transformó el debate sobre ciudadanía, territorio y plurinacionalidad. Es un acontecimiento decisivo para la historia política y social reciente del país.",
+    "importancia": "Es un acontecimiento decisivo para la historia política y social reciente del país.",
+    "lugares_relacionados": [
+      "Quito",
+      "Otavalo",
+      "Cayambe"
+    ],
+    "personajes_relacionados": [
+      "Dolores Cacuango",
+      "Tránsito Amaguaña"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "movilización",
+      "indígena",
+      "derechos"
+    ],
+    "anio_inicio": 1990,
+    "anio_fin": 1990,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "guerra_del_cenepa",
+    "nombre": "Guerra del Cenepa",
+    "tipo": "evento",
+    "epoca": "Siglo XX",
+    "ubicacion": "Cordillera del Cóndor, Ecuador",
+    "resumen": "Conflicto armado de 1995 entre Ecuador y Perú en la zona amazónica fronteriza.",
+    "descripcion_larga": "Conflicto armado de 1995 entre Ecuador y Perú en la zona amazónica fronteriza. Es fundamental para comprender el cierre de una larga etapa de disputa territorial.",
+    "importancia": "Es fundamental para comprender el cierre de una larga etapa de disputa territorial.",
+    "lugares_relacionados": [],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [
+      "Guerra de Paquisha"
+    ],
+    "etiquetas": [
+      "frontera",
+      "Amazonía",
+      "territorio"
+    ],
+    "anio_inicio": 1995,
+    "anio_fin": 1995,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "dolarizacion_del_ecuador",
+    "nombre": "Dolarización del Ecuador",
+    "tipo": "evento",
+    "epoca": "Siglo XXI",
+    "ubicacion": "Ecuador",
+    "resumen": "Cambio del sistema monetario ecuatoriano en el año 2000 tras una severa crisis financiera.",
+    "descripcion_larga": "Cambio del sistema monetario ecuatoriano en el año 2000 tras una severa crisis financiera. Es uno de los hitos económicos más relevantes de la historia reciente del país.",
+    "importancia": "Es uno de los hitos económicos más relevantes de la historia reciente del país.",
+    "lugares_relacionados": [
+      "Quito",
+      "Guayaquil"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "economía",
+      "moneda",
+      "crisis"
+    ],
+    "anio_inicio": 2000,
+    "anio_fin": 2000,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "incorporacion_de_galapagos_al_ecuador",
+    "nombre": "Incorporación de Galápagos al Ecuador",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Galápagos, Ecuador",
+    "resumen": "Anexión oficial del archipiélago al territorio ecuatoriano en 1832.",
+    "descripcion_larga": "Anexión oficial del archipiélago al territorio ecuatoriano en 1832. Es un episodio importante para la historia territorial del país.",
+    "importancia": "Es un episodio importante para la historia territorial del país.",
+    "lugares_relacionados": [
+      "Galápagos"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "territorio",
+      "islas",
+      "soberanía"
+    ],
+    "anio_inicio": 1832,
+    "anio_fin": 1832,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "rebelion_de_daquilema",
+    "nombre": "Rebelión de Daquilema",
+    "tipo": "evento",
+    "epoca": "Siglo XIX",
+    "ubicacion": "Chimborazo, Ecuador",
+    "resumen": "Levantamiento indígena liderado por Fernando Daquilema en 1871.",
+    "descripcion_larga": "Levantamiento indígena liderado por Fernando Daquilema en 1871. Es central para estudiar la conflictividad étnica y social en la Sierra central.",
+    "importancia": "Es central para estudiar la conflictividad étnica y social en la Sierra central.",
+    "lugares_relacionados": [
+      "Riobamba",
+      "Chimborazo"
+    ],
+    "personajes_relacionados": [
+      "Fernando Daquilema"
+    ],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "indígena",
+      "rebelión",
+      "Sierra"
+    ],
+    "anio_inicio": 1871,
+    "anio_fin": 1872,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
+  },
+  {
+    "id": "cultura_valdivia",
+    "nombre": "Cultura Valdivia",
+    "tipo": "evento",
+    "epoca": "Periodo formativo",
+    "ubicacion": "Costa del Ecuador",
+    "resumen": "Desarrollo cultural temprano de la costa ecuatoriana conocido por su cerámica antigua.",
+    "descripcion_larga": "Desarrollo cultural temprano de la costa ecuatoriana conocido por su cerámica antigua. Amplía el horizonte temporal del proyecto hacia los desarrollos más antiguos del actual territorio ecuatoriano.",
+    "importancia": "Amplía el horizonte temporal del proyecto hacia los desarrollos más antiguos del actual territorio ecuatoriano.",
+    "lugares_relacionados": [
+      "Real Alto"
+    ],
+    "personajes_relacionados": [],
+    "eventos_relacionados": [],
+    "etiquetas": [
+      "arqueología",
+      "costa",
+      "cerámica"
+    ],
+    "anio_inicio": -3500,
+    "anio_fin": -1500,
+    "fuente_base": "Registro histórico ampliado para escalar la base local del proyecto."
   }
 ]

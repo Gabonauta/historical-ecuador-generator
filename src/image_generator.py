@@ -54,7 +54,7 @@ def generate_visual_content(
                     "se uso el provider compatible con el indice."
                 )
 
-            retrieved_chunks = retrieve(
+            retrieved_chunks = _retrieve_chunks_with_optional_api_key(
                 query=query,
                 top_k=requested_top_k,
                 entity_type=entity.get("tipo"),
@@ -104,7 +104,7 @@ def generate_visual_content(
             ),
         }
 
-    image_result = generate_image(
+    image_result = _generate_image_with_optional_api_key(
         provider=provider,
         prompt=prompt,
         size=size,
@@ -180,3 +180,29 @@ def _normalize_api_keys(api_keys: dict[str, str] | None) -> dict[str, str]:
         if normalized_provider and normalized_key:
             normalized[normalized_provider] = normalized_key
     return normalized
+
+
+def _retrieve_chunks_with_optional_api_key(**kwargs: Any) -> list[dict[str, Any]]:
+    """Call the retriever while remaining compatible with older signatures."""
+    if not kwargs.get("api_key"):
+        kwargs.pop("api_key", None)
+        return retrieve(**kwargs)
+
+    try:
+        return retrieve(**kwargs)
+    except TypeError:
+        kwargs.pop("api_key", None)
+        return retrieve(**kwargs)
+
+
+def _generate_image_with_optional_api_key(**kwargs: Any) -> dict[str, Any]:
+    """Call the image client while remaining compatible with older signatures."""
+    if not kwargs.get("api_key"):
+        kwargs.pop("api_key", None)
+        return generate_image(**kwargs)
+
+    try:
+        return generate_image(**kwargs)
+    except TypeError:
+        kwargs.pop("api_key", None)
+        return generate_image(**kwargs)
