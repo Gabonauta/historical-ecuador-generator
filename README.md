@@ -2,11 +2,6 @@
 
 Aplicacion en Python + Streamlit para generar contenido historico del Ecuador a partir de una base local en JSON. El proyecto combina generacion textual, RAG local y generacion visual con proveedores externos opcionales.
 
-## Nota importante
-
-Durante esta revision no se encontro ninguna carpeta llamada `kuvho app` ni un proyecto Flutter dentro de este workspace o en `/Users/dragonborn/Documents/repo`. Tampoco aparecieron archivos tipicos de Flutter como `pubspec.yaml`, `lib/*.dart`, `android/` o `ios/`.
-
-Eso significa que este repositorio no es una app Flutter y que los requisitos Android/iOS no aplican al codigo revisado aqui. Si la app que quieres auditar es otra, hace falta compartir esa carpeta.
 
 ## Que hace este proyecto
 
@@ -180,11 +175,6 @@ Estado comprobado en esta revision:
 
 - `43` tests pasaron correctamente
 
-## Requisitos Android / iOS
-
-No aplica para este codigo.
-
-Este repositorio no contiene una app nativa ni Flutter. Lo que existe aqui es una aplicacion web con Streamlit. Si quieres verla desde un telefono o tablet, se accede por navegador una vez que la app esta levantada localmente o desplegada.
 
 ## Flujo de uso
 
@@ -203,35 +193,7 @@ Este repositorio no contiene una app nativa ni Flutter. Lo que existe aqui es un
 - Chunks recuperados y contexto base visibles en modo diagnostico
 - Indice RAG persistido en `data/rag/`
 
-## Revision de seguridad realizada
-
-Se hizo una revision estatica del codigo y dependencias directas presentes en este workspace.
-
-### Hallazgos
-
-- No se encontraron paquetes directos evidentemente maliciosos en `requirements.txt`.
-- No se encontraron llamadas a `subprocess`, `os.system`, `eval`, `exec`, `curl`, `wget` ni ejecucion de shell.
-- No se encontraron mecanismos de persistencia, autoarranque, instalacion silenciosa, ni cambios al sistema operativo.
-- No se encontraron binarios extra, ejecutables raros o archivos sospechosos dentro del proyecto fuente.
-- No se encontraron claves API hardcodeadas ni secretos expuestos en archivos trackeados.
-- Las escrituras a disco estan acotadas a archivos de salida del proyecto como `outputs/generated_images/`, `data/rag/` y `data/processed/`.
-- Las conexiones externas del codigo estan limitadas a SDKs de OpenAI, Gemini y xAI cuando el usuario configura una API key y ejecuta una accion que las necesite.
-
-### Limitaciones de esta revision
-
-- No se realizo escaneo antivirus por firmas.
-- No se hizo auditoria online de CVEs o reputacion de paquetes porque la revision fue local/offline.
-- No se pudo auditar la app Flutter `kuvho` porque no esta en este workspace.
-
-## Archivos importantes
-
-- [app/streamlit_app.py](/Users/dragonborn/Documents/repo/ecuador_historical_characters/historical-ecuador-generator/app/streamlit_app.py)
-- [src/generator.py](/Users/dragonborn/Documents/repo/ecuador_historical_characters/historical-ecuador-generator/src/generator.py)
-- [src/llm_client.py](/Users/dragonborn/Documents/repo/ecuador_historical_characters/historical-ecuador-generator/src/llm_client.py)
-- [src/image_client.py](/Users/dragonborn/Documents/repo/ecuador_historical_characters/historical-ecuador-generator/src/image_client.py)
-- [src/rag_indexer.py](/Users/dragonborn/Documents/repo/ecuador_historical_characters/historical-ecuador-generator/src/rag_indexer.py)
-- [src/rag_retriever.py](/Users/dragonborn/Documents/repo/ecuador_historical_characters/historical-ecuador-generator/src/rag_retriever.py)
 
 ## Resumen corto
 
-`historical-ecuador-generator` es una app web educativa para generar contenido historico del Ecuador con grounding local, RAG opcional e imagenes opcionales. En el workspace revisado no hay una app Flutter ni señales obvias de codigo malicioso o comportamiento peligroso para tu computador.
+`historical-ecuador-generator` es una app web educativa para generar contenido historico del Ecuador con grounding local, RAG opcional e imagenes opcionales.
